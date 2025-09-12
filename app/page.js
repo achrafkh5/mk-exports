@@ -1,95 +1,64 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import styles from "./page.module.css";
+import Header from "@/UI/header/page";
+export default function HomePage() {
+  const [categories, setCategories] = useState([]);
 
-export default function Home() {
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("/api/categories");
+        const data = await res.json();
+
+        if (res.ok) {
+          setCategories(data);
+        } else {
+          console.error("Error:", data.error || "Failed to fetch categories");
+        }
+      } catch (err) {
+        console.error("Error connecting to server:", err);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <>
+      <Header />
+      {/* Hero */}
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <h1>Welcome to My Shop</h1>
+          <p>Find everything you need at the best prices</p>
+          <Link href="/shop/products" className={styles.shopNow}>
+            Shop Now
+          </Link>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* Categories */}
+      <section className={styles.categoriesSection}>
+        <h2>Find a Category</h2>
+        <div className={styles.categories}>
+          {categories.length > 0 ? (
+            categories.map((cat) => (
+              <Link
+                key={cat._id}
+                href={`shop/companies/${encodeURIComponent(cat._id)}`}
+                className={styles.card}
+              >
+                <h3>{cat.name}</h3>
+              </Link>
+            ))
+          ) : (
+            <p>Loading categories...</p>
+          )}
+        </div>
+      </section>
+    </>
   );
 }

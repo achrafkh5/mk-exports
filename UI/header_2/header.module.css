@@ -1,0 +1,56 @@
+/* Header styles */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 10%;
+  margin: 0;
+}
+
+.header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.nav a:hover {
+  color: #0070f3;
+}
+
+.whatsapp_btn {
+  background: #1ebe5c;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.whatsapp_btn:hover {
+  background: #25d366;
+}
