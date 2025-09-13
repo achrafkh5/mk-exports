@@ -6,6 +6,7 @@ import { verifyAuth } from "@/lib/auth";
 
 export async function GET(request) {
   try {
+    const verify = verifyAuth();
     const client = await clientPromise;
     const db = client.db("shop"); 
     const categories = await db.collection("categories").find({}).toArray();

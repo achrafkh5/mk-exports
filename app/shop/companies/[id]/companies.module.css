@@ -1,8 +1,74 @@
-.body{
-    min-height: 90vh;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background-color: #c3c3c3;
-    color: #333;
-    padding-top: 0;
+.body {
+    min-height: 100vh;
+    background: linear-gradient(120deg, #e0e7ff 0%, #f3f4f6 100%);
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    color: #222;
+    padding: 2rem 0;
+}
+
+.body h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #6366f1;
+    margin-bottom: 2rem;
+}
+
+.companies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.card {
+    background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 100%);
+    border-radius: 1.2rem;
+    box-shadow: 0 4px 16px rgba(99,102,241,0.10);
+    border: 1px solid #d1d5db;
+    text-align: center;
+    text-decoration: none;
+    color: #312e81;
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1rem 0 0.5rem 0;
+    color: #312e81;
+}
+.card p {
+    font-size: 0.98rem;
+    color: #6366f1;
+    margin-bottom: 0.5rem;
+}
+.card:hover {
+    transform: translateY(-8px) scale(1.04);
+    box-shadow: 0 8px 32px rgba(99,102,241,0.18);
+}
+.viewProducts {
+    background: linear-gradient(90deg, #6366f1 0%, #312e81 100%);
+    color: #fff;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.08);
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+}
+.viewProducts:hover {
+    background: linear-gradient(90deg, #4338ca 0%, #6366f1 100%);
+    transform: scale(1.04);
 }

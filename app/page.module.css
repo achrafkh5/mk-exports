@@ -1,78 +1,152 @@
-.body{
-    min-height: 90vh;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background-color: #c3c3c3;
-    color: #333;
-    padding-top: 0;
+.infoSection {
+  background: linear-gradient(120deg, #e0e7ff 60%, #c7d2fe 100%);
+  border-radius: 2rem;
+  box-shadow: 0 6px 32px rgba(99,102,241,0.10);
+  padding: 3rem 2rem;
+  margin: 2.5rem auto;
+  max-width: 900px;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  color: #222;
+  text-align: left;
+  border: 2px solid #6366f1;
+}
+.infoTitle {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #312e81;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+.infoContent {
+  font-size: 1.18rem;
+  color: #222;
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+/* Modern body background matching hero image */
+.body {
+  min-height: 90vh;
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(120deg, #312e81 0%, #6366f1 100%);
+  color: #f3f4f6;
+  padding: 0 0 10px 0;
+  scroll-behavior:smooth;
 }
 /* Hero */
+/* Hero section with overlay and modern look */
 .hero {
-  background: url("../public/eirik-skarstein-IyA6a5p2HIc-unsplash.jpg") center/cover no-repeat;
+  background: linear-gradient(120deg, #35328b 0%, #6366f1 100%), url("../public/eirik-skarstein-IyA6a5p2HIc-unsplash.jpg") center/cover no-repeat;
   height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: white;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(60,60,120,0.18);
+  position: relative;
 }
-
-.heroContent h1 {
-  font-size: 3rem;
+/* Hero content styles */
+.heroContent {
+  background: url("../public/eirik-skarstein-IyA6a5p2HIc-unsplash.jpg") center/cover no-repeat;
+  border-radius: 1.5rem;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 8px 32px rgba(60,60,120,0.18);
+  display: inline-block;
+  width: 80%;
+  height: 60%;
+}
+.heroTitle {
+  font-size: 3.2rem;
+  font-weight: 800;
   margin-bottom: 1rem;
+  color: #fff;
+  letter-spacing: 1px;
 }
-
-.heroContent p {
-  font-size: 1.25rem;
+.heroSubtitle {
+  font-size: 1.35rem;
   margin-bottom: 2rem;
+  color: #dae0f9;
 }
 
+/* Shop Now button modern style */
 .shopNow {
-  background: #0070f3;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  background: linear-gradient(90deg, #6366f1 0%, #312e81 100%);
+  color: #fff;
+  padding: 0.85rem 2rem;
+  border-radius: 10px;
   text-decoration: none;
-  font-weight: bold;
-  transition: background 0.2s;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.08);
+  transition: background 0.2s, transform 0.2s;
+  display: inline-block;
 }
-
 .shopNow:hover {
-  background: #0059c9;
+  background: linear-gradient(90deg, #4338ca 0%, #6366f1 100%);
+  transform: scale(1.04);
 }
 
 /* Categories */
+/* Categories section modern style */
 .categoriesSection {
-  padding: 2rem;
+  padding: 3rem 1rem 2rem 1rem;
   text-align: center;
+  background: #fff;
+  border-radius: 1.5rem;
+  margin: 2rem auto;
+  max-width: 900px;
+  box-shadow: 0 4px 24px rgba(60,60,120,0.08);
+}
+.categoriesHeading {
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #6366f1;
+  letter-spacing: 0.5px;
 }
 
-.categoriesSection h2 {
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-}
-
+/* Categories grid modern style */
 .categories {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
   justify-content: center;
-  gap: 1.5rem;
+  align-items: stretch;
+  margin: 0 auto;
 }
 
+/* Category card modern style */
 .card {
-  background: #a7a7a7;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 100%);
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 16px rgba(99,102,241,0.10);
+  border: 1px solid #d1d5db;
   text-align: center;
   text-decoration: none;
-  color: #333;
-  transition: transform 0.2s ease;
+  color: #312e81;
+  transition: transform 0.2s, box-shadow 0.2s;
   overflow: hidden;
+  padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
+.cardTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #312e81;
+}
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 8px 32px rgba(99,102,241,0.18);
+}
+.loading {
+  color: #312e81;
+  font-size: 1.1rem;
+  margin-top: 2rem;
 }
 
 .card img {
@@ -83,4 +157,37 @@
 
 .card h3 {
   margin: 1rem 0;
+}
+
+/* General section style (Who We Are, Capital, Countries) */
+.section {
+  padding: 3rem 1.5rem;
+  max-width: 900px;
+  margin: 2.5rem auto;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(60,60,120,0.08);
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.section:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 32px rgba(99,102,241,0.12);
+}
+
+.section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #312e81; /* dark indigo */
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.5px;
+}
+
+.section p {
+  font-size: 1.1rem;
+  color: #4b5563; /* neutral gray for readability */
+  line-height: 1.7;
+  max-width: 750px;
+  margin: 0 auto;
 }

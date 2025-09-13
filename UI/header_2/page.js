@@ -8,7 +8,7 @@ export default function Header() {
       <div className={styles.container}>
 
         <Link href="/admin" className={styles.logo}>
-          MyShop
+          MK exports
         </Link>
 
       </div>

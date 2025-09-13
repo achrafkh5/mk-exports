@@ -44,8 +44,8 @@ export async function POST(request) {
       message: "company created successfully",
       company
     }, { status: 200 });
-  } catch (error) {
-    console.error("Error during creating company:", error);
+  } catch (err) {
+    console.error("Error during creating company:", err);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

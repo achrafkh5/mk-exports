@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
 import Header from "@/UI/header/page";
+
 export default function HomePage() {
   const [categories, setCategories] = useState([]);
 
@@ -27,22 +28,49 @@ export default function HomePage() {
   }, []);
 
   return (
-    <>
+    <div className={styles.body}>
       <Header />
       {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
-          <h1>Welcome to My Shop</h1>
-          <p>Find everything you need at the best prices</p>
-          <Link href="/shop/products" className={styles.shopNow}>
+          <h1 className={styles.heroTitle}>Welcome to MK Exports</h1>
+          <p className={styles.heroSubtitle}>Find everything you need at the best prices</p>
+          <a href="#find-category" className={styles.shopNow} onClick={e => {
+            e.preventDefault();
+            document.getElementById('find-category')?.scrollIntoView({ behavior: 'smooth' });
+          }}>
             Shop Now
-          </Link>
+          </a>
         </div>
       </section>
 
+    <section id="who" className={styles.infoSection}>
+      <h2 className={styles.infoTitle}>Who We Are</h2>
+      <p className={styles.infoContent}>
+        We are a modern company driven by innovation, dedicated to creating value
+        for our partners and customers through technology and collaboration.
+      </p>
+    </section>
+
+    <section id="capital" className={styles.infoSection}>
+      <h2 className={styles.infoTitle}>Capital</h2>
+      <p className={styles.infoContent}>
+        With a strong capital base, we invest in long-term growth, supporting
+        sustainable development and innovation across industries.
+      </p>
+    </section>
+
+    <section id="countries" className={styles.infoSection}>
+      <h2 className={styles.infoTitle}>Countries</h2>
+      <p className={styles.infoContent}>
+        Our presence spans multiple countries, giving us a global perspective while
+        maintaining strong local connections.
+      </p>
+    </section>
+
       {/* Categories */}
-      <section className={styles.categoriesSection}>
-        <h2>Find a Category</h2>
+  <section id="find-category" className={styles.categoriesSection}>
+        <h2 className={styles.categoriesHeading}>Find a Category</h2>
         <div className={styles.categories}>
           {categories.length > 0 ? (
             categories.map((cat) => (
@@ -51,14 +79,15 @@ export default function HomePage() {
                 href={`shop/companies/${encodeURIComponent(cat._id)}`}
                 className={styles.card}
               >
-                <h3>{cat.name}</h3>
+                <h3 className={styles.cardTitle}>{cat.name}</h3>
               </Link>
             ))
           ) : (
-            <p>Loading categories...</p>
+            <p className={styles.loading}>Loading categories...</p>
           )}
         </div>
       </section>
-    </>
+      
+    </div>
   );
 }
