@@ -1,3 +1,94 @@
+/* Hamburger button styles (mobile only) */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+}
+.hamburgerBar {
+  width: 24px;
+  height: 3px;
+  background: #312e81;
+  margin: 3px 0;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+@media (max-width: 600px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100vw;
+    background: linear-gradient(120deg, #c7d2fe 0%, #e0e7ff 100%);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 4px 24px rgba(60,60,120,0.08);
+    z-index: 999;
+    display: none;
+  }
+  .navOpen {
+    display: flex !important;
+  }
+  .header .container {
+    position: relative;
+  }
+}
+/* Responsive styles for header */
+@media (max-width: 900px) {
+  .header .container {
+    padding: 0.7rem 1rem;
+  }
+  .logo {
+    font-size: 1.2rem;
+  }
+  .nav {
+    gap: 1rem;
+  }
+  .whatsapp_btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .header .container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem 0.5rem;
+  }
+  .logo {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .nav {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  .nav a {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.2rem;
+    width: 100%;
+    display: block;
+  }
+  .whatsapp_btn {
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.5rem;
+  }
+}
 /* Header styles */
 .header {
   position: sticky;

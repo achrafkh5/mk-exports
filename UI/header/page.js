@@ -1,17 +1,30 @@
+"use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import styles from "./header.module.css"; 
+import styles from "./header.module.css";
 
 export default function Header() {
+  const [navOpen, setNavOpen] = useState(false);
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-
         <Link href="/" className={styles.logo} prefetch={true}>
           mk exports
         </Link>
 
-        <nav className={styles.nav}>
+        {/* Hamburger button for mobile */}
+        <button
+          className={styles.hamburger}
+          aria-label="Toggle navigation"
+          onClick={() => setNavOpen((open) => !open)}
+        >
+          <span className={styles.hamburgerBar}></span>
+          <span className={styles.hamburgerBar}></span>
+          <span className={styles.hamburgerBar}></span>
+        </button>
+
+        <nav className={`${styles.nav} ${navOpen ? styles.navOpen : ""}`}>
           <Link href="/" prefetch={true}>Home</Link>
           <Link href="/login" prefetch={true}>account</Link>
           <Link href="/contact">Contact</Link>
