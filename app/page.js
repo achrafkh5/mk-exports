@@ -78,6 +78,12 @@ export default function HomePage() {
                 key={cat._id}
                 href={`shop/companies/${encodeURIComponent(cat._id)}`}
                 className={styles.card}
+                style={{
+  backgroundImage: `url(${cat.avatar.url})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat"
+}}
               >
                 <h3 className={styles.cardTitle}>{cat.name}</h3>
               </Link>
