@@ -28,16 +28,15 @@ export default function Header() {
           <Link href="/" prefetch={true}>Home</Link>
           <Link href="/login" prefetch={true}>account</Link>
           <Link href="/contact">Contact</Link>
+          <a
+            href="https://wa.me/1234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.whatsapp_btn}
+          >
+            WhatsApp <i className="fab fa-whatsapp" style={{fontSize:"20px"}}></i>
+          </a>
         </nav>
-
-        <a
-          href="https://wa.me/1234567890"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.whatsapp_btn}
-        >
-          WhatsApp <i className="fab fa-whatsapp" style={{fontSize:"20px"}}></i>
-        </a>
       </div>
     </header>
   );
