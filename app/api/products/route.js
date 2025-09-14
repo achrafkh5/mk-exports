@@ -89,9 +89,10 @@ export async function PUT(request) {
   try {
     const verify = verifyAuth();
     const body = await request.json();
-    const { id,price } = body;
+    const date =new Date();
+    const { id,price,name,description,avatar } = body;
 
-    if (!id || !price) {
+    if (!id || !price || !name||!description||!avatar ) {
       return NextResponse.json({ error: "id and price are required" }, { status: 400 });
     }
 
@@ -100,7 +101,7 @@ export async function PUT(request) {
 
     const result = await db.collection("products").updateOne(
       { _id: new ObjectId(String(id)) },
-      { $set: { price } }
+      { $set: { price,name,description,avatar,createdAt:date } }
     );
 
     if (result.matchedCount === 0) {

@@ -1,74 +1,122 @@
-.body {
-    min-height: 100vh;
-    background: linear-gradient(120deg, #e0e7ff 0%, #f3f4f6 100%);
-    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-    color: #222;
-    padding: 2rem 0;
+.wrapper {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #f9fafb 0%, #eef2ff 100%);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  padding: 3rem 1rem;
 }
 
-.body h1 {
-    text-align: center;
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: #6366f1;
-    margin-bottom: 2rem;
+.title {
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #6366f1, #4338ca);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 3rem;
 }
 
-.companies {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2rem;
-    justify-content: center;
-    align-items: stretch;
-    max-width: 1000px;
-    margin: 0 auto;
+.subCategoryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.card {
-    background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 100%);
-    border-radius: 1.2rem;
-    box-shadow: 0 4px 16px rgba(99,102,241,0.10);
-    border: 1px solid #d1d5db;
-    text-align: center;
-    text-decoration: none;
-    color: #312e81;
-    transition: transform 0.2s, box-shadow 0.2s;
-    overflow: hidden;
-    padding: 2rem 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.subCard {
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 20px rgba(99,102,241,0.15);
+  border: 1px solid rgba(99,102,241,0.2);
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: #111;
+  position: relative;
+  overflow: hidden;
 }
-.card h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 1rem 0 0.5rem 0;
-    color: #312e81;
+
+.subCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(99,102,241,0.1), rgba(147,197,253,0.1));
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
-.card p {
-    font-size: 0.98rem;
-    color: #6366f1;
-    margin-bottom: 0.5rem;
+
+.subCard:hover::before {
+  opacity: 1;
 }
-.card:hover {
-    transform: translateY(-8px) scale(1.04);
-    box-shadow: 0 8px 32px rgba(99,102,241,0.18);
+
+.subCard:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(99,102,241,0.25);
+  border-color: #6366f1;
 }
-.viewProducts {
-    background: linear-gradient(90deg, #6366f1 0%, #312e81 100%);
-    color: #fff;
-    padding: 0.7rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    margin-top: 1rem;
-    box-shadow: 0 2px 8px rgba(99,102,241,0.08);
-    transition: background 0.2s, transform 0.2s;
-    display: inline-block;
+
+.subCard img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  background: #fff;
+  padding: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
-.viewProducts:hover {
-    background: linear-gradient(90deg, #4338ca 0%, #6366f1 100%);
-    transform: scale(1.04);
+
+.emoji {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
 }
+
+.subCard h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #312e81;
+  margin-top: 0.5rem;
+}
+
+.intro {
+  max-width: 700px;
+  margin: 0 auto 1rem auto;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.tagline {
+  text-align: center;
+  font-size: 1rem;
+  font-style: italic;
+  color: #6366f1;
+  margin-bottom: 2.5rem;
+}
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh; /* centers vertically in viewport area */
+}
+
+.spinner {
+  border: 4px solid #e0e7ff; /* light border */
+  border-top: 4px solid #6366f1; /* accent color */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+

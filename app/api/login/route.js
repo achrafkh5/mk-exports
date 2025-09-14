@@ -33,7 +33,7 @@ export async function POST(request) {
   path: "/",
   maxAge: 24 * 60 * 60,
 });
-
+    console.log("Token set in cookie:", token);
     return response;
     
   } catch (error) {

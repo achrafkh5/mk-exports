@@ -26,8 +26,8 @@ export async function POST(request) {
     const verify = verifyAuth();
     const body = await request.json();
     const date = new Date();
-    const { name,avatar,description } = body;
-    if (!name || !avatar || !description) {
+    const { name,avatar } = body;
+    if (!name || !avatar ) {
       return NextResponse.json({ error: "name and avatar are required" }, { status: 400 });
     }
 
@@ -100,5 +100,31 @@ export async function DELETE(request) {
   }
 }
 
-
+export async function PUT(request) {
+  const verify = verifyAuth();
+  try {
+    const body = await request.json();
+    const { id, name,avatar } = body;
+    const date = new Date();
+    if (!id || !name||!avatar ) {
+      return NextResponse.json({ error: "id, name  are required" }, { status: 400 });
+    }
+    const client = await clientPromise;
+    const db = client.db("shop");
+    const category = await db.collection("categories").findOne({ _id: new ObjectId(String(id)) });
+    if (!category) {
+      return NextResponse.json({ error: "Category not found" }, { status: 404 });
+    }
+    const result = await db.collection("categories").updateOne(
+      { _id: new ObjectId(String(id)) },
+      { $set: { name,avatar,createdAt:date } }
+    );
+    if (result.modifiedCount === 0) {
+      return NextResponse.json({ error: "No changes made to the category" }, { status: 200 });
+    }
+    return NextResponse.json({ message: "Category updated successfully" }, { status: 200 });
+  } catch (error) {
+    console.error("Error during updating category:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }}
 

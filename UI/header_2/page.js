@@ -7,7 +7,7 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.container}>
 
-        <Link href="/admin" className={styles.logo}>
+        <Link href="/admin" className={styles.logo} prefetch={true}>
           MK exports
         </Link>
 

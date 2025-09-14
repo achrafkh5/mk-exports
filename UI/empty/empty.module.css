@@ -1,0 +1,43 @@
+.emptyState {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 16px rgba(99,102,241,0.08);
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.emptyState h2 {
+  font-size: 1.6rem;
+  color: #312e81;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.emptyState p {
+  color: #6366f1;
+  margin-bottom: 1.5rem;
+}
+
+.emptyState .icon {
+  width: 60px;
+  height: 60px;
+  color: #6366f1;
+  margin-bottom: 1rem;
+}
+
+.button {
+  display: inline-block;
+  background: linear-gradient(90deg, #6366f1 0%, #312e81 100%);
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.button:hover {
+  background: linear-gradient(90deg, #4338ca 0%, #6366f1 100%);
+  transform: scale(1.04);
+}

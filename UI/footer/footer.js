@@ -14,9 +14,9 @@ export default function Footer() {
 
         {/* Navigation */}
         <nav className={styles.footer_nav}>
-          <Link href="/">Home</Link>
-          <Link href="/companies">Companies</Link>
-          <Link href="/contact">Contact</Link>
+          <Link href="/" prefetch={true}>Home</Link>
+          <Link href="/login" prefetch={true}>account</Link>
+          <Link href="/contact" prefetch={true}>Contact</Link>
         </nav>
 
         {/* Contact Info */}
@@ -34,7 +34,7 @@ export default function Footer() {
       </div>
 
       <div className={styles.footer_bottom}>
-        <p>© {new Date().getFullYear()} MyShop. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Mk Exports. All rights reserved.</p>
       </div>
     </footer>
   );

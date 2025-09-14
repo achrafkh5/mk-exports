@@ -160,54 +160,70 @@ export default function CompaniesPage() {
   };
 
   const editComp = async () => {
-    try {
-      if (!editName || !selectedCat) {
-        alert("Please provide a category name.");
-        return;
-      }
-      let avatar = selectedCat.avatar;
+  try {
+    if (!editName || !selectedCat) {
+      alert("Please provide a company name.");
+      return;
+    }
 
-      if (editFile) {
-        const uploadForm = new FormData();
-        uploadForm.append("file", editFile);
-        const respond = await fetch("/api/upload", {
-          method: "POST",
-          body: uploadForm,
+    let avatar = selectedCat.avatar;
+
+    // Upload new image if chosen
+    if (editFile) {
+      const uploadForm = new FormData();
+      uploadForm.append("file", editFile);
+
+      const respond = await fetch("/api/upload", {
+        method: "POST",
+        body: uploadForm,
+      });
+
+      const uploadData = await respond.json();
+      if (!respond.ok) throw new Error(uploadData.error || "Image upload failed");
+
+      avatar = uploadData.avatar;
+
+      // Delete old image if it exists
+      if (selectedCat.avatar?.public_id) {
+        const deleteRes = await fetch("/api/upload", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ public_id: selectedCat.avatar.public_id }),
         });
 
-        const uploadData = await respond.json();
-        if (!respond.ok) {
-          throw new Error(uploadData.error || "Image upload failed");
-        }
-        avatar = uploadData.avatar;
+        const deleteData = await deleteRes.json();
+        if (!deleteRes.ok) throw new Error(deleteData.error || "Failed to delete old image");
       }
-      const res = await fetch("/api/companies", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          credentials: "include",
-        },
-        body: JSON.stringify({ id: selectedCat._id, name: editName, avatar }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to update category");
-      }
-      setCompanies((prev) =>
-        prev.map((cat) =>
-          cat._id === selectedCat._id ? { ...cat, name: editName, avatar } : cat
-        )
-      );
-      console.log("✅ category updated successfully");
-      closeEdit();
-    } catch (error) {
-      console.error(error);
     }
-  };
+    
+    const res = await fetch("/api/companies", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ id: selectedCat._id, name: editName, avatar }),
+    });
 
-  if (loading) {
-    return <div>Loading...</div>;
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Failed to update company");
+
+    // Update local state
+    setCompanies((prev) =>
+      prev.map((comp) =>
+        comp._id === selectedCat._id ? { ...comp, name: editName, avatar } : comp
+      )
+    );
+
+    console.log("✅ Company updated successfully");
+    closeEdit();
+  } catch (error) {
+    console.error("❌ Error updating company:", error.message);
   }
+};
+
+
+  if (loading) return( <div className={styles.spinnerContainer}>
+          <div className={styles.spinner}></div>
+        </div>);
 
   return (
     <div>
@@ -257,7 +273,7 @@ export default function CompaniesPage() {
               className={styles.input}
             />
             <div className={styles.popupActions}>
-              <button className={styles.submitButton}>Save</button>
+              <button className={styles.submitButton} onClick={editComp}>Save</button>
               <button onClick={closeEdit} className={styles.cancelButton}>Cancel</button>
             </div>
           </div>
@@ -280,7 +296,7 @@ export default function CompaniesPage() {
 
       <table className={styles.table}>
         <thead>
-          <tr>
+          <tr >
             <th>Name</th>
             <th>creation</th>
             <th>Actions</th>
@@ -289,7 +305,7 @@ export default function CompaniesPage() {
         <tbody>
           {companies?.length>0?(<>{companies?.map((company) => (
             <tr key={company._id}>
-              <td><Image src={company?.avatar?.url || "../../public/file.svg"} height={30} width={30} alt={company.name}></Image> {company.name}</td>
+              <td><div className={styles.class}><Image src={company?.avatar?.url || "../../public/file.svg"} height={40} width={40} alt={company.name}></Image> {company.name}</div></td>
               <td>{company.createdAt ? new Date(company.createdAt).toLocaleString() : "N/A"}</td>
               <td className={styles.actions}>
                 <button className={styles.edit} onClick={() => openEdit(company)}>

@@ -18,7 +18,9 @@ export default function CategoriesPage() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch("/api/categories");
+        const res = await fetch("/api/categories",
+          { credentials: "include" }
+        );
         const data = await res.json();
         if (res.ok) {
           setCategories(data);
@@ -35,7 +37,9 @@ export default function CategoriesPage() {
     fetchCategories();
   }, []);
 
-  if (loading) return <p className={styles.loading}>Loading categories...</p>;
+  if (loading) return( <div className={styles.spinnerContainer}>
+          <div className={styles.spinner}></div>
+        </div>);
 
   const addCat = () => {
     setPop(true);
@@ -113,8 +117,9 @@ export default function CategoriesPage() {
         setCategories([data.category]); 
     }
     console.log("✅ category created successfully");
-    setFile("");
+    setFile(null);
     setCatin("");
+    setPop(false);
   } catch (error) {
     console.error(error);
   }
@@ -129,6 +134,7 @@ export default function CategoriesPage() {
       const res = await fetch("/api/categories", {
         method: "DELETE",
         headers: {'Content-Type': 'application/json'},
+        credentials: "include",
         body: JSON.stringify({ id: selectedCat._id }),
       });
       const data = await res.json();
@@ -142,6 +148,66 @@ export default function CategoriesPage() {
       console.error("Error deleting category:", error);
     }
   };
+
+  const editCat = async () => {
+    try {
+      if (!editName) {
+        alert("Category name cannot be empty");
+        return;
+      }
+      let avatar = selectedCat.avatar;
+
+    // Upload new image if chosen
+    if (editFile) {
+      const uploadForm = new FormData();
+      uploadForm.append("file", editFile);
+
+      const respond = await fetch("/api/upload", {
+        method: "POST",
+        body: uploadForm,
+      });
+
+      const uploadData = await respond.json();
+      if (!respond.ok) throw new Error(uploadData.error || "Image upload failed");
+
+      avatar = uploadData.avatar;
+
+      // Delete old image if it exists
+      if (selectedCat.avatar?.public_id) {
+        const deleteRes = await fetch("/api/upload", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ public_id: selectedCat.avatar.public_id }),
+        });
+
+        const deleteData = await deleteRes.json();
+        if (!deleteRes.ok) throw new Error(deleteData.error || "Failed to delete old image");
+      }
+    }
+      const res = await fetch("/api/categories", {
+        method: "PUT",
+        headers: {'Content-Type': 'application/json'},
+        credentials: "include",
+        body: JSON.stringify({
+          id: selectedCat._id,
+          name: editName,
+        avatar,})
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error);
+      }
+      setCategories((prev) =>
+        prev.map((cat) =>
+          cat._id === selectedCat._id ? { ...cat, name: editName,avatar } : cat
+        )
+      );
+      console.log("✅ Category updated successfully");
+      closeEdit();
+    } catch (error) {
+      console.error("Error updating category:", error);
+    }}
+
   return (
     <div className={styles.body}>
       <h1 className={styles.heading}>Categories</h1>
@@ -191,7 +257,7 @@ export default function CategoriesPage() {
               className={styles.input}
             />
             <div className={styles.popupActions}>
-              <button className={styles.submitButton}>Save</button>
+              <button className={styles.submitButton} onClick={editCat}>Save</button>
               <button onClick={closeEdit} className={styles.cancelButton}>Cancel</button>
             </div>
           </div>

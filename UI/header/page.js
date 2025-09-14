@@ -7,13 +7,13 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.container}>
 
-        <Link href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo} prefetch={true}>
           mk exports
         </Link>
 
         <nav className={styles.nav}>
-          <Link href="/">Home</Link>
-          <Link href="/login">account</Link>
+          <Link href="/" prefetch={true}>Home</Link>
+          <Link href="/login" prefetch={true}>account</Link>
           <Link href="/contact">Contact</Link>
         </nav>
 

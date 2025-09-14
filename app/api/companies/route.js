@@ -93,3 +93,30 @@ export async function DELETE(request) {
   }
 }
 
+export async function PUT(request) {
+  const verify = verifyAuth();
+  try {
+    const body = await request.json();
+    const { id, name,avatar } = body;
+    const date = new Date();
+    if (!id || !name||!avatar ) {
+      return NextResponse.json({ error: "id, name  are required" }, { status: 400 });
+    }
+    const client = await clientPromise;
+    const db = client.db("shop");
+    const company = await db.collection("companies").findOne({ _id: new ObjectId(String(id)) });
+    if (!company) {
+      return NextResponse.json({ error: "company not found" }, { status: 404 });
+    }
+    const result = await db.collection("companies").updateOne(
+      { _id: new ObjectId(String(id)) },
+      { $set: { name,avatar,createdAt:date } }
+    );
+    if (result.modifiedCount === 0) {
+      return NextResponse.json({ error: "No changes made to the company" }, { status: 200 });
+    }
+    return NextResponse.json({ message: "company updated successfully" }, { status: 200 });
+  } catch (error) {
+    console.error("Error during updating company:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }}

@@ -83,7 +83,9 @@ export default function HomePage() {
               </Link>
             ))
           ) : (
-            <p className={styles.loading}>Loading categories...</p>
+        <div className={styles.spinnerContainer}>
+          <div className={styles.spinner}></div>
+        </div>
           )}
         </div>
       </section>

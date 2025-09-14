@@ -40,6 +40,8 @@ export default function ProductsPage() {
 
     fetchProducts();
   }, [id]);
+  
+  
 
   const [categoryName, setCategoryName] = useState([]);
 
@@ -56,6 +58,10 @@ export default function ProductsPage() {
     };
     fetchData();
   }, [id]);
+
+  if (loading) return( <div className={styles.spinnerContainer}>
+          <div className={styles.spinner}></div>
+        </div>);
 
   const addCat = () => {
     setPop(true);
@@ -177,20 +183,49 @@ export default function ProductsPage() {
         alert("Please provide a product name.");
         return;
       }
+      let avatar = selectedCat.avatar;
+
+    // Upload new image if chosen
+    if (editFile) {
+      const uploadForm = new FormData();
+      uploadForm.append("file", editFile);
+
+      const respond = await fetch("/api/upload", {
+        method: "POST",
+        body: uploadForm,
+      });
+
+      const uploadData = await respond.json();
+      if (!respond.ok) throw new Error(uploadData.error || "Image upload failed");
+
+      avatar = uploadData.avatar;
+
+      // Delete old image if it exists
+      if (selectedCat.avatar?.public_id) {
+        const deleteRes = await fetch("/api/upload", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ public_id: selectedCat.avatar.public_id }),
+        });
+
+        const deleteData = await deleteRes.json();
+        if (!deleteRes.ok) throw new Error(deleteData.error || "Failed to delete old image");
+      }
+    }
       const res = await fetch("/api/products", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           credentials: "include",
         },
-        body: JSON.stringify({ id: selectedCat._id, name: editName, price: editPrice, description: editDescription }),
+        body: JSON.stringify({ id: selectedCat._id, name: editName, price: editPrice, description: editDescription,avatar }),
       });
 
       const data = await res.json();
       if (!res.ok) {
         throw new Error(data.error || "Failed to update product");
       }
-      setProducts((prev) => prev.map((cat) => (cat._id === selectedCat._id ? data.product : cat)));
+      setProducts((prev) => prev.map((cat) => (cat._id === selectedCat._id ? { ...cat, name : editName, price: editPrice, description: editDescription,avatar } : cat)));
       console.log("✅ product updated successfully");
       closeEdit();
     } catch (error) {
@@ -247,8 +282,14 @@ export default function ProductsPage() {
                   />
                   <input type="text" placeholder="description" className={styles.input} value={editDescription} onChange={(e) => setEditDescription(e.target.value)} />
                   <input type="number" placeholder="price" className={styles.input} value={editPrice} onChange={(e) => setEditPrice(e.target.value)} />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setEditFile(e.target.files[0])}
+                    className={styles.input}
+                  />
                   <div className={styles.popupActions}>
-                    <button className={styles.submitButton}>Save</button>
+                    <button className={styles.submitButton} onClick={editCat}>Save</button>
                     <button onClick={closeEdit} className={styles.cancelButton}>Cancel</button>
                   </div>
                 </div>
