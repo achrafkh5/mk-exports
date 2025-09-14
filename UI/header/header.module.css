@@ -88,11 +88,9 @@
   }
   .whatsapp_btn {
     width: 100%;
-    margin-top: 1rem;
-    font-size: 0.95rem;
-    padding: 0.7rem 0.5rem;
-    display: block;
-    text-align: left;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.5rem;
   }
 }
 /* Header styles */
@@ -122,9 +120,12 @@
   text-decoration: none;
 }
 
+
 .nav {
   display: flex;
   gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav a {
@@ -146,8 +147,46 @@
   text-decoration: none;
   font-weight: bold;
   transition: background 0.2s;
+  display: inline-block;
 }
 
 .whatsapp_btn:hover {
   background: #25d366;
+  color: white;
+}
+
+/* Hide desktop WhatsApp button on mobile */
+@media (max-width: 600px) {
+  .desktopWhatsapp {
+    display: none !important;
+  }
+}
+
+/* Floating WhatsApp button for mobile only */
+.whatsapp_floating {
+  display: none;
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  background: #1ebe5c;
+  color: #fff;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  box-shadow: 0 4px 16px rgba(30,190,92,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.whatsapp_floating:hover {
+  background: #25d366;
+}
+@media (max-width: 600px) {
+  .whatsapp_floating {
+    display: flex;
+  }
 }
