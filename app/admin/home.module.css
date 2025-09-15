@@ -1,3 +1,148 @@
+@media (max-width: 600px) {
+  .tableWrapper {
+    padding: 0.5rem 0.2rem;
+    margin-bottom: 1.2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 18px rgba(60, 60, 120, 0.10);
+    background: #fff;
+    border: 1px solid #e0e7ff;
+    overflow-x: auto;
+  }
+  .table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+    background: transparent;
+    font-size: 0.95rem;
+    min-width: 400px;
+  }
+  .table th {
+    background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+    color: #fff;
+    font-weight: 700;
+    padding: 0.8rem 0.5rem;
+    border: none;
+    text-align: left;
+    letter-spacing: 0.5px;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+  }
+  .table td {
+    background: #f8fafc;
+    padding: 1rem 0.5rem;
+    border-bottom: none;
+    vertical-align: middle;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 1px 4px rgba(60, 60, 120, 0.04);
+  }
+  .table tr {
+    margin-bottom: 1.2rem;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(60, 60, 120, 0.08);
+    background: #fff;
+    border: 1px solid #e0e7ff;
+  }
+  .table tr:last-child td {
+    border-bottom: none;
+  }
+  .actions {
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 600px) {
+  .body {
+    padding: 0.7rem 0.3rem;
+    background: linear-gradient(120deg, #f3f4f6 0%, #e0e7ff 100%);
+  }
+  .heading {
+    font-size: 1.15rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.5px;
+  }
+  .addButton {
+    margin-bottom: 1.2rem;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.10);
+    border-radius: 10px;
+    transition: box-shadow 0.2s;
+  }
+  .tableWrapper {
+    padding: 1rem 0.5rem;
+    margin-bottom: 1.2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 18px rgba(60, 60, 120, 0.10);
+    background: #fff;
+    border: 1px solid #e0e7ff;
+  }
+  .popupContent {
+    padding: 1rem 0.5rem;
+    min-width: 120px;
+    width: 99vw;
+    gap: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 18px rgba(60, 60, 120, 0.10);
+  }
+  .table th, .table td {
+    padding: 0.7rem 0.3rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    background: #f8fafc;
+    box-shadow: 0 1px 4px rgba(60, 60, 120, 0.04);
+  }
+  .table th {
+    background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+    color: #fff;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+  }
+  .table tr {
+    margin-bottom: 0.7rem;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(60, 60, 120, 0.04);
+    background: #f8fafc;
+  }
+  .actions {
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    justify-content: flex-start;
+  }
+  .actionBtn, .edit, .delete, .link {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    border-radius: 7px;
+    box-shadow: 0 1px 4px rgba(99, 102, 241, 0.08);
+    margin-right: 0.3rem;
+    margin-bottom: 0.3rem;
+    transition: box-shadow 0.2s, background 0.2s;
+  }
+  .input {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
+    border-radius: 7px;
+    margin-bottom: 0.7rem;
+    box-shadow: 0 1px 4px rgba(60, 60, 120, 0.04);
+  }
+  .empty {
+    padding: 1.2rem 0.5rem;
+    margin: 1rem 0;
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(60, 60, 120, 0.08);
+  }
+  .spinnerContainer {
+    height: 18vh;
+  }
+  .spinner {
+    width: 28px;
+    height: 28px;
+    border-width: 3px;
+  }
+}
 /* Responsive styles for admin pages */
 @media (max-width: 900px) {
   .body {
@@ -400,3 +545,4 @@
 .table th {
   text-align: center;
 }
+

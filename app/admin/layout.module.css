@@ -1,10 +1,10 @@
-
 .container {
   display: flex;
   min-height: 100vh;
   background: #f3f4f6;
 }
 
+/* Sidebar (desktop default) */
 .sidebar {
   width: 260px;
   background: linear-gradient(135deg, #6366f1 0%, #312e81 100%);
@@ -14,6 +14,7 @@
   flex-direction: column;
   align-items: flex-start;
   box-shadow: 2px 0 16px rgba(60, 60, 120, 0.08);
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .title {
@@ -30,8 +31,7 @@
   width: 100%;
 }
 
-
-
+/* Nav links */
 .navLink {
   color: #e0e7ff;
   padding: 0.75rem 1.25rem;
@@ -40,27 +40,29 @@
   text-decoration: none;
   font-size: 1.08rem;
   font-weight: 500;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 .navLink:hover {
-  background-color:transparent ;
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateX(5px);
 }
 .navLink.active {
   background: #fff;
   color: #312e81;
+  font-weight: 600;
 }
+
 .childLink {
-  padding-left: 28px; /* indent level 1 */
+  padding-left: 28px;
 }
-
 .childLink2 {
-  padding-left: 50px; /* indent level 2 */
+  padding-left: 50px;
 }
 
-
+/* Main content */
 .main {
   flex: 1;
   padding: 2.5rem;
@@ -71,23 +73,78 @@
   gap: 2rem;
 }
 
+.sidebarToggle {
+  position: absolute; /* stick it on top */
+  top: 1rem;
+  right: 1rem;
+  background: transparent; /* no background, only icon */
+  border: none;
+  cursor: pointer;
+  z-index: 1100; /* make sure it stays above sidebar */
+  padding: 0.5rem;
+  display: none; /* hidden by default on desktop */
+}
+
+.sidebarToggle svg {
+  stroke: #312e81; /* icon color */
+  width: 28px;
+  height: 28px;
+}
+
+/* Show button only on mobile */
+@media (max-width: 900px) {
+  .sidebarToggle {
+    display: block;
+  }
+  .navLink{
+    max-width: 70%;
+  }
+  .childLink {
+  padding-right: -28px;
+}
+.childLink2 {
+  padding-right: -50px;
+}
+}
+
 
 
 @media (max-width: 900px) {
   .container {
     flex-direction: column;
   }
+
+  /* Sidebar hidden off-screen by default */
   .sidebar {
+    position: absolute;
+    top: 56px;
+    left: 0;
     width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    box-shadow: none;
+    height: calc(100vh - 56px);
+    transform: translateY(-120%);
+    opacity: 0;
+    border-radius: 0 0 18px 18px;
+    padding: 2rem 1.2rem;
+    background: linear-gradient(135deg, rgba(99,102,241,0.95) 0%, rgba(49,46,129,0.95) 100%);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 4px 24px rgba(60,60,120,0.2);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 1001;
   }
+
+  /* Sidebar visible when open */
+  .sidebarOpen {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .sidebarToggle {
+    display: block;
+    position: relative;
+    z-index: 1002;
+  }
+
   .main {
     padding: 1rem;
   }
 }
-
-

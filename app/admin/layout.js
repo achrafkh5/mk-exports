@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useParams } from "next/navigation";
 import styles from "./layout.module.css";
 import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
 
 export default function Layout({ children }) {
   const pathname = usePathname();
@@ -12,7 +13,7 @@ export default function Layout({ children }) {
 
   const [categoryName, setCategoryName] = useState(null);
   const [companyName, setCompanyName] = useState(null);
-
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const isActive = (href) => pathname === href;
 
@@ -28,7 +29,9 @@ export default function Layout({ children }) {
           const data = await res.json();
           if (res.ok) {
             setCompanyName(data);
-            const catRes = await fetch(`/api/admin/category?id=${data.categoryId}`);
+            const catRes = await fetch(
+              `/api/admin/category?id=${data.categoryId}`
+            );
             const catData = await catRes.json();
             if (catRes.ok) setCategoryName(catData);
           }
@@ -44,7 +47,9 @@ export default function Layout({ children }) {
     <nav className={styles.nav}>
       <Link
         href="/admin"
-        className={`${styles.navLink} ${isActive("/admin") ? styles.active : ""}`}
+        className={`${styles.navLink} ${
+          isActive("/admin") ? styles.active : ""
+        }`}
       >
         🗂️ Categories
       </Link>
@@ -73,12 +78,14 @@ export default function Layout({ children }) {
     sidebarContent = (
       <nav className={styles.nav}>
         <Link href="/admin" className={styles.navLink}>
-          🗂️ {categoryName?.name || "Categories"} 
+          🗂️ {categoryName?.name || "Categories"}
         </Link>
         <Link
           href={`/admin/categories/${companyName?.categoryId}`}
           className={`${styles.navLink} ${styles.childLink} ${
-            isActive(`/admin/categories/${companyName?.categoryId}`) ? styles.active : ""
+            isActive(`/admin/categories/${companyName?.categoryId}`)
+              ? styles.active
+              : ""
           }`}
         >
           🏢 {companyName?.name || "Companies"}
@@ -95,14 +102,34 @@ export default function Layout({ children }) {
     );
   }
 
+  // Sidebar toggle button
+  const handleSidebarToggle = () => setSidebarOpen((open) => !open);
+
   return (
     <>
       <Header />
       <div className={styles.container}>
-        <aside className={styles.sidebar}>
+        {/* Toggle button (top-right on mobile) */}
+        <button
+          className={styles.sidebarToggle}
+          aria-label="Toggle admin dashboard sidebar"
+          onClick={handleSidebarToggle}
+          style={{textAlign:"right"}}
+        >
+          {sidebarOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+
+        {/* Sidebar */}
+        <aside
+          className={`${styles.sidebar} ${
+            sidebarOpen ? styles.sidebarOpen : ""
+          }`}
+        >
           <h2 className={styles.title}>Admin Dashboard</h2>
           {sidebarContent}
         </aside>
+
+        {/* Main Content */}
         <main className={styles.main}>{children}</main>
       </div>
     </>
