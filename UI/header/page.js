@@ -32,7 +32,7 @@ export default function Header() {
         </nav>
         {/* Desktop WhatsApp button only */}
         <a
-          href="https://wa.me/1234567890"
+          href="https://wa.me/213659911059"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.whatsapp_btn + " " + styles.desktopWhatsapp}
