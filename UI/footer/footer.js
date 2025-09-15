@@ -22,7 +22,7 @@ export default function Footer() {
         {/* Contact Info */}
         <div className={styles.footer_contact}>
           <a href="mailto:admin@myshop.com">admin@myshop.com</a>
-          <a href="tel:+213659911059">+213 659 911 059</a>
+          <a href="tel:+213659911059">+213 659 91 10 59</a>
           <a
             href="https://wa.me/213659911059"
             target="_blank"

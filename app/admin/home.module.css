@@ -1,3 +1,88 @@
+/* Responsive styles for admin pages */
+@media (max-width: 900px) {
+  .body {
+    padding: 0.5rem;
+  }
+  .heading {
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+  .tableWrapper {
+    padding: 1.2rem 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .popupContent {
+    padding: 1.2rem 0.5rem;
+    min-width: 220px;
+    width: 95vw;
+    gap: 1rem;
+  }
+  .addButton, .submitButton, .cancelButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+  }
+  .table th, .table td {
+    padding: 0.7rem 0.4rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .body {
+    padding: 0.2rem;
+  }
+  .heading {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+  .tableWrapper {
+    padding: 0.5rem 0.2rem;
+    margin-bottom: 0.8rem;
+    border-radius: 0.7rem;
+  }
+  .popupContent {
+    padding: 0.7rem 0.2rem;
+    min-width: 120px;
+    width: 99vw;
+    gap: 0.7rem;
+    border-radius: 0.7rem;
+  }
+  .addButton, .submitButton, .cancelButton {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
+    border-radius: 6px;
+  }
+  .table th, .table td {
+    padding: 0.5rem 0.2rem;
+    font-size: 0.85rem;
+  }
+  .input {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+  }
+  .actions {
+    gap: 0.3rem;
+  }
+  .actionBtn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 5px;
+  }
+  .edit, .delete, .link {
+    padding: 4px 7px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+  }
+  .spinner {
+    width: 32px;
+    height: 32px;
+    border-width: 3px;
+  }
+  .spinnerContainer {
+    height: 20vh;
+  }
+}
 /* Popup styles for modals */
 .popup {
   position: fixed;
