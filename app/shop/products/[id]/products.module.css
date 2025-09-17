@@ -159,3 +159,57 @@
     padding-bottom: 0;
   }
 }
+
+/* --- Mobile improvements --- */
+@media (max-width: 768px) {
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* smaller cards */
+    gap: 1rem; /* tighter spacing */
+    padding: 0 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 3px 10px rgba(99,102,241,0.15); /* softer shadow */
+  }
+
+  .card h3 {
+    font-size: 1rem;
+    margin: 0.6rem 0;
+  }
+
+  .price {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on very small phones */
+  }
+}
+.card img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+/* Tablet & smaller */
+@media (max-width: 768px) {
+  .card img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 480px) {
+  .card img {
+    width: 100px;
+    height: 100px;
+  }
+}
