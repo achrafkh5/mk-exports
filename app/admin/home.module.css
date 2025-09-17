@@ -17,7 +17,9 @@
     display: block;
     width: 93%;
   }
-
+  .table{
+  margin-left: 10px;
+}
   .table thead {
     display: none; 
   }
@@ -83,12 +85,14 @@
     font-size: 1.15rem;
     margin-bottom: 1.2rem;
     letter-spacing: 0.5px;
+    margin-left: 20px;
   }
   .addButton {
     margin-bottom: 1.2rem;
     box-shadow: 0 2px 8px rgba(99, 102, 241, 0.10);
     border-radius: 10px;
     transition: box-shadow 0.2s;
+    margin-left: 20px;
   }
   .tableWrapper {
     padding: 1rem 0.5rem;
@@ -263,7 +267,9 @@
   z-index: 1000;
   backdrop-filter: blur(2px);
 }
-
+.body{
+  padding-left: 20px  ;
+}
 .popupContent {
   background: #fff;
   border-radius: 1.25rem;
