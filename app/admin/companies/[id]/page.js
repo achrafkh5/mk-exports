@@ -323,11 +323,11 @@ export default function ProductsPage() {
         <tbody>
           {products.length>0? (<>{products.map((product) => (
             <tr key={product._id}>
-              <td><Image src={product?.avatar?.url || "../../public/file.svg"} height={30} width={30} alt={product.name}></Image> {product.name}</td>
-              <td>{product.price} DA</td>
-              <td>{product.description}</td>
-              <td>{new Date(product.createdAt).toLocaleString()}</td>
-              <td className={styles.actions}>
+              <td data-label="Name"><Image src={product?.avatar?.url || "../../public/file.svg"} height={30} width={30} alt={product.name}></Image> {product.name}</td>
+              <td data-label="price">{product.price} DA</td>
+              <td data-label="description">{product.description}</td>
+              <td data-label="creation">{new Date(product.createdAt).toLocaleString()}</td>
+              <td data-label="actions" className={styles.actions}>
                 <button className={styles.edit} onClick={() => openEdit(product)}>
                   Edit <i className="fas fa-pen"></i>
                 </button>

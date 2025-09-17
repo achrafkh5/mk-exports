@@ -305,9 +305,9 @@ export default function CompaniesPage() {
         <tbody>
           {companies?.length>0?(<>{companies?.map((company) => (
             <tr key={company._id}>
-              <td><div className={styles.class}><Image src={company?.avatar?.url || "../../public/file.svg"} height={40} width={40} alt={company.name}></Image> {company.name}</div></td>
-              <td>{company.createdAt ? new Date(company.createdAt).toLocaleString() : "N/A"}</td>
-              <td className={styles.actions}>
+              <td data-label="Name"><Image src={company?.avatar?.url || "../../public/file.svg"} height={40} width={40} alt={company.name}></Image> {company.name}</td>
+              <td data-label="creation">{company.createdAt ? new Date(company.createdAt).toLocaleString() : "N/A"}</td>
+              <td data-label="actions" className={styles.actions}>
                 <button className={styles.edit} onClick={() => openEdit(company)}>
                   Edit <i className="fas fa-pen"></i>
                 </button>
