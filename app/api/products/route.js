@@ -25,7 +25,7 @@ export async function GET(request) {
 
 export async function POST(request) {
   try {
-    const verify = verifyAuth();
+    const verify = await verifyAuth();
     const body = await request.json();
     const { description, name,companyId,price,avatar,categoryId } = body;// 
 
@@ -54,7 +54,7 @@ export async function POST(request) {
 
 export async function DELETE(request) {
   try {
-    const verify = verifyAuth();
+    const verify = await verifyAuth();
     const body = await request.json();
     const { id } = body;
 
@@ -87,7 +87,7 @@ export async function DELETE(request) {
 
 export async function PUT(request) {
   try {
-    const verify = verifyAuth();
+    const verify = await verifyAuth();
     const body = await request.json();
     const date =new Date();
     const { id,price,name,description,avatar } = body;

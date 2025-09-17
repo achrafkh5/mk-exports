@@ -6,7 +6,6 @@ import { verifyAuth } from "@/lib/auth";
 
 export async function GET(request) {
   try {
-    const verify = verifyAuth();
     const client = await clientPromise;
     const db = client.db("shop"); 
     const categories = await db.collection("categories").find({}).toArray();
@@ -23,7 +22,7 @@ export async function GET(request) {
 
 export async function POST(request) {
   try {
-    const verify = verifyAuth();
+    const verify = await verifyAuth();
     const body = await request.json();
     const date = new Date();
     const { name,avatar } = body;
@@ -51,7 +50,7 @@ export async function POST(request) {
 
 
 export async function DELETE(request) {
-  const verify = verifyAuth();
+  const verify = await verifyAuth();
   try {
     const body = await request.json();
     const { id } = body;
@@ -101,7 +100,7 @@ export async function DELETE(request) {
 }
 
 export async function PUT(request) {
-  const verify = verifyAuth();
+  const verify = await verifyAuth();
   try {
     const body = await request.json();
     const { id, name,avatar } = body;

@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary"; 
 import { Readable } from "stream";
-
+import { verifyAuth } from "@/lib/auth";
 export async function POST(req) {
   try {
+    const verify = await verifyAuth();
     const formData = await req.formData();
     const file = formData.get("file");
 
@@ -45,6 +46,7 @@ export async function POST(req) {
 
 export async function DELETE(req) {
   try {
+    const verify = await verifyAuth();
     const body = await req.json();
     const { public_id } = body;
     if (!public_id) {
