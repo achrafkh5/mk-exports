@@ -148,14 +148,14 @@
 }
 @media (max-width: 600px) {
   .popupContent {
-    padding: 1.2rem 0.5rem;
-    min-width: 90vw;
-    width: 98vw;
+    padding: 1.2rem;
+    min-width: unset;
+    width: 80vw;
     border-radius: 1rem;
     gap: 1rem;
   }
   .popupOverlay {
-    align-items: flex-end;
-    padding-bottom: 1.5rem;
+    align-items: center; /* keep it centered */
+    padding-bottom: 0;
   }
 }
