@@ -290,20 +290,20 @@ export default function CategoriesPage() {
         <tbody>
           {categories?.length>0 ?(<>{categories?.map((cat) => (
             <tr key={cat._id}>
-              <td><Image src={cat?.avatar?.url || "../../public/file.svg"} height={30} width={30} alt={cat.name}></Image> {cat.name}</td>
-              <td>{cat.createdAt ? new Date(cat.createdAt).toLocaleString() : "N/A"}</td>
-              <td className={styles.actions}>
+              <td data-label="Name"><Image src={cat?.avatar?.url || "../../public/file.svg"} height={30} width={30} alt={cat.name}></Image> {cat.name}</td>
+              <td data-label="creation">{cat.createdAt ? new Date(cat.createdAt).toLocaleString() : "N/A"}</td>
+              <td data-label="actions" className={styles.actions}>
                 <button className={styles.edit} onClick={() => openEdit(cat)}>
-                  Edit <i className="fas fa-pen"></i>
+                  <p>Edit</p> <i className="fas fa-pen"></i>
                 </button>
                 <button className={styles.delete} onClick={() => openDelete(cat)}>
-                  Delete <i className="fas fa-trash"></i>
+                  <p>Delete</p> <i className="fas fa-trash"></i>
                 </button>
                 <Link
                   href={`/admin/categories/${encodeURIComponent(cat._id)}`}
                   className={styles.link}
                 >
-                  ▶ Companies
+                  <p>Companies</p> <i className="fas fa-store"></i>
                 </Link>
               </td>
             </tr>

@@ -106,7 +106,7 @@ export default function Layout({ children }) {
   const handleSidebarToggle = () => setSidebarOpen((open) => !open);
 
   return (
-    <>
+    <div className={styles.body}>
       <Header />
       <div className={styles.container}>
         {/* Toggle button (top-right on mobile) */}
@@ -132,6 +132,6 @@ export default function Layout({ children }) {
         {/* Main Content */}
         <main className={styles.main}>{children}</main>
       </div>
-    </>
+    </div>
   );
 }

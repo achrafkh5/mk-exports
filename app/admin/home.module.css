@@ -8,44 +8,51 @@
     border: 1px solid #e0e7ff;
     overflow-x: auto;
   }
-  .table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 1rem;
-    background: transparent;
-    font-size: 0.95rem;
-    min-width: 400px;
-  }
-  .table th {
-    background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
-    color: #fff;
-    font-weight: 700;
-    padding: 0.8rem 0.5rem;
-    border: none;
-    text-align: left;
-    letter-spacing: 0.5px;
-    border-radius: 12px 12px 0 0;
-    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
-  }
-  .table td {
-    background: #f8fafc;
-    padding: 1rem 0.5rem;
-    border-bottom: none;
-    vertical-align: middle;
-    border-radius: 0 0 12px 12px;
-    box-shadow: 0 1px 4px rgba(60, 60, 120, 0.04);
-  }
+  .table,
+  .table thead,
+  .table tbody,
+  .table th,
+  .table td,
   .table tr {
-    margin-bottom: 1.2rem;
     display: block;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(60, 60, 120, 0.08);
-    background: #fff;
-    border: 1px solid #e0e7ff;
+    width: 93%;
   }
-  .table tr:last-child td {
+
+  .table thead {
+    display: none; 
+  }
+
+  .table tr {
+    margin-bottom: 1rem;
+    border: 1px solid #e0e7ff;
+    border-radius: 0.8rem;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+    background: #fff;
+    padding: 0.8rem;
+  }
+
+  .table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0.4rem;
+    border: none;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .table td:last-child {
     border-bottom: none;
   }
+
+  .table td::before {
+    content: attr(data-label); /* add label from header */
+    font-weight: 600;
+    color: #312e81;
+    margin-right: 0.6rem;
+    flex-shrink: 0;
+  }
+
+
   .actions {
     gap: 0.5rem;
     margin-top: 0.5rem;
@@ -53,6 +60,20 @@
     justify-content: flex-start;
   }
 }
+.actions button,
+.actions p {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-right: 0.5rem;
+}
+
+/* On small screens → show only icons */
+@media (max-width: 600px) {
+  .actions button p,
+  .actions p {
+    display: none; /* hide text */
+  }}
 @media (max-width: 600px) {
   .body {
     padding: 0.7rem 0.3rem;
