@@ -1,3 +1,58 @@
+/* ===== Desktop & Mobile Toggle ===== */
+.desktopTable {
+  display: block;
+}
+.mobileList {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktopTable {
+    display: none;
+  }
+  .mobileList {
+    display: block;
+  }
+
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 0.8rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f3f4f6;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .cardBody {
+    padding: 1rem;
+    background: #fff;
+  }
+
+  /* Actions → icons only */
+  .actions button span,
+  .actions a span {
+    display: none;
+  }
+
+  .actions button,
+  .actions a {
+    padding: 0.5rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ===== Responsive Table (<=600px) ===== */
 @media (max-width: 600px) {
   .tableWrapper {
     padding: 0.5rem 0.2rem;
@@ -8,6 +63,7 @@
     border: 1px solid #e0e7ff;
     overflow-x: auto;
   }
+
   .table,
   .table thead,
   .table tbody,
@@ -17,11 +73,13 @@
     display: block;
     width: 93%;
   }
-  .table{
-  margin-left: 10px;
-}
+
+  .table {
+    margin-left: 10px;
+  }
+
   .table thead {
-    display: none; 
+    display: none;
   }
 
   .table tr {
@@ -47,213 +105,39 @@
   }
 
   .table td::before {
-    content: attr(data-label); /* add label from header */
+    content: attr(data-label);
     font-weight: 600;
     color: #312e81;
     margin-right: 0.6rem;
     flex-shrink: 0;
   }
 
-
   .actions {
     gap: 0.5rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin: 0.5rem 0;
     justify-content: flex-start;
   }
+
+  .actions button p,
+  .actions p {
+    display: none;
+  }
+}
+
+/* ===== General Actions ===== */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 .actions button,
 .actions p {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  margin-right: 0.5rem;
 }
 
-/* On small screens → show only icons */
-@media (max-width: 600px) {
-  .actions button p,
-  .actions p {
-    display: none; /* hide text */
-  }}
-@media (max-width: 600px) {
-  .body {
-    padding: 0.7rem 0.3rem;
-    background: linear-gradient(120deg, #f3f4f6 0%, #e0e7ff 100%);
-  }
-  .heading {
-    font-size: 1.15rem;
-    margin-bottom: 1.2rem;
-    letter-spacing: 0.5px;
-    margin-left: 20px;
-  }
-  .addButton {
-    margin-bottom: 1.2rem;
-    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.10);
-    border-radius: 10px;
-    transition: box-shadow 0.2s;
-    margin-left: 20px;
-  }
-  .tableWrapper {
-    padding: 1rem 0.5rem;
-    margin-bottom: 1.2rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 18px rgba(60, 60, 120, 0.10);
-    background: #fff;
-    border: 1px solid #e0e7ff;
-  }
-  .popupContent {
-    padding: 1rem 0.5rem;
-    min-width: 120px;
-    width: 99vw;
-    gap: 1rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 18px rgba(60, 60, 120, 0.10);
-  }
-  .table th, .table td {
-    padding: 0.7rem 0.3rem;
-    font-size: 0.9rem;
-    border-radius: 8px;
-    background: #f8fafc;
-    box-shadow: 0 1px 4px rgba(60, 60, 120, 0.04);
-  }
-  .table th {
-    background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
-    color: #fff;
-    border-radius: 8px 8px 0 0;
-    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
-  }
-  .table tr {
-    margin-bottom: 0.7rem;
-    display: block;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(60, 60, 120, 0.04);
-    background: #f8fafc;
-  }
-  .actions {
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    justify-content: flex-start;
-  }
-  .actionBtn, .edit, .delete, .link {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.85rem;
-    border-radius: 7px;
-    box-shadow: 0 1px 4px rgba(99, 102, 241, 0.08);
-    margin-right: 0.3rem;
-    margin-bottom: 0.3rem;
-    transition: box-shadow 0.2s, background 0.2s;
-  }
-  .input {
-    padding: 0.6rem 0.8rem;
-    font-size: 0.95rem;
-    border-radius: 7px;
-    margin-bottom: 0.7rem;
-    box-shadow: 0 1px 4px rgba(60, 60, 120, 0.04);
-  }
-  .empty {
-    padding: 1.2rem 0.5rem;
-    margin: 1rem 0;
-    border-radius: 1rem;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(60, 60, 120, 0.08);
-  }
-  .spinnerContainer {
-    height: 18vh;
-  }
-  .spinner {
-    width: 28px;
-    height: 28px;
-    border-width: 3px;
-  }
-}
-/* Responsive styles for admin pages */
-@media (max-width: 900px) {
-  .body {
-    padding: 0.5rem;
-  }
-  .heading {
-    font-size: 1.4rem;
-    margin-bottom: 1.2rem;
-  }
-  .tableWrapper {
-    padding: 1.2rem 0.5rem;
-    margin-bottom: 1.2rem;
-  }
-  .popupContent {
-    padding: 1.2rem 0.5rem;
-    min-width: 220px;
-    width: 95vw;
-    gap: 1rem;
-  }
-  .addButton, .submitButton, .cancelButton {
-    padding: 0.5rem 1rem;
-    font-size: 0.95rem;
-  }
-  .table th, .table td {
-    padding: 0.7rem 0.4rem;
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .body {
-    padding: 0.2rem;
-  }
-  .heading {
-    font-size: 1.1rem;
-    margin-bottom: 0.8rem;
-  }
-  .tableWrapper {
-    padding: 0.5rem 0.2rem;
-    margin-bottom: 0.8rem;
-    border-radius: 0.7rem;
-  }
-  .popupContent {
-    padding: 0.7rem 0.2rem;
-    min-width: 120px;
-    width: 99vw;
-    gap: 0.7rem;
-    border-radius: 0.7rem;
-  }
-  .addButton, .submitButton, .cancelButton {
-    padding: 0.4rem 0.7rem;
-    font-size: 0.85rem;
-    border-radius: 6px;
-  }
-  .table th, .table td {
-    padding: 0.5rem 0.2rem;
-    font-size: 0.85rem;
-  }
-  .input {
-    padding: 0.5rem 0.7rem;
-    font-size: 0.9rem;
-    border-radius: 6px;
-  }
-  .actions {
-    gap: 0.3rem;
-  }
-  .actionBtn {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.8rem;
-    border-radius: 5px;
-  }
-  .edit, .delete, .link {
-    padding: 4px 7px;
-    font-size: 0.8rem;
-    border-radius: 3px;
-  }
-  .spinner {
-    width: 32px;
-    height: 32px;
-    border-width: 3px;
-  }
-  .spinnerContainer {
-    height: 20vh;
-  }
-}
-/* Popup styles for modals */
+/* ===== Popup ===== */
 .popup {
   position: fixed;
   top: 0;
@@ -267,9 +151,7 @@
   z-index: 1000;
   backdrop-filter: blur(2px);
 }
-.body{
-  padding-left: 20px  ;
-}
+
 .popupContent {
   background: #fff;
   border-radius: 1.25rem;
@@ -297,100 +179,84 @@
   margin-bottom: 0.5rem;
 }
 
-.input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #e0e7ff;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  background: #f8fafc;
-  transition: border 0.2s;
-}
-
-.input:focus {
-  border-color: #6366f1;
-  outline: none;
-}
-
-.popupActions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  width: 100%;
-}
-
-.submitButton {
-  background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
-  color: #fff;
+/* ===== Buttons ===== */
+.addButton,
+.submitButton,
+.cancelButton,
+.actionBtn,
+.edit,
+.delete,
+.link {
   border: none;
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
+  border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
   transition: background 0.2s, transform 0.2s;
 }
 
-.submitButton:hover {
-  background: linear-gradient(90deg, #4338ca 0%, #2563eb 100%);
-  transform: scale(1.04);
-}
-
-.cancelButton {
-  background: #e0e7ff;
-  color: #312e81;
-  border: none;
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.cancelButton:hover {
-  background: #6366f1;
-  color: #fff;
-}
-
-.body {
-  min-height: 100vh;
-  margin: 0;
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(120deg, #f3f4f6 0%, #e0e7ff 100%);
-  color: #222;
-  padding: 0;
-}
-
-.heading {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  color: #312e81;
-}
-
+/* Add button */
 .addButton {
   background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
   color: #fff;
   padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
   margin-bottom: 1.5rem;
-  cursor: pointer;
   font-size: 1rem;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
-  transition: background 0.2s, transform 0.2s;
 }
-
 .addButton:hover {
   background: linear-gradient(90deg, #4338ca 0%, #2563eb 100%);
   transform: scale(1.04);
 }
 
+/* Submit */
+.submitButton {
+  background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+}
+.submitButton:hover {
+  background: linear-gradient(90deg, #4338ca 0%, #2563eb 100%);
+  transform: scale(1.04);
+}
 
+/* Cancel */
+.cancelButton {
+  background: #e0e7ff;
+  color: #312e81;
+  padding: 0.75rem 1.5rem;
+}
+.cancelButton:hover {
+  background: #6366f1;
+  color: #fff;
+}
+
+/* Action buttons */
+.edit {
+  background: #f59e0b;
+  color: #fff;
+  padding: 6px 10px;
+}
+.edit:hover {
+  background: #d97706;
+}
+.delete {
+  background: #dc2626;
+  color: #fff;
+  padding: 6px 10px;
+}
+.delete:hover {
+  background: #b91c1c;
+}
+.link {
+  background: #16a34a;
+  color: #fff;
+  padding: 6px 10px;
+  text-decoration: none;
+}
+.link:hover {
+  background: #15803d;
+}
+
+/* ===== Table ===== */
 .tableWrapper {
   background: #fff;
   border-radius: 1.25rem;
@@ -405,7 +271,6 @@
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  background: transparent;
   font-size: 1.08rem;
 }
 
@@ -414,143 +279,40 @@
   color: #fff;
   font-weight: 700;
   padding: 1.1rem 0.75rem;
-  border: none;
-  text-align: left;
-  letter-spacing: 0.5px;
+  text-align: center;
 }
 
 .table td {
   background: #f8fafc;
   padding: 1rem 0.75rem;
   border-bottom: 1px solid #e5e7eb;
-  vertical-align: middle;
 }
 
 .table tr:last-child td {
   border-bottom: none;
 }
 
-.actions {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: flex-start;
-}
-
-.actionBtn {
-  background: linear-gradient(90deg, #a78bfa 0%, #60a5fa 100%);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 0.5rem 1.2rem;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
-  transition: background 0.2s, transform 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.actionBtn:hover {
-  background: linear-gradient(90deg, #6366f1 0%, #2563eb 100%);
-  transform: scale(1.06);
-}
-
-.actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.actionBtn {
-  background: #e0e7ff;
-  color: #312e81;
-  border: none;
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.actionBtn:hover {
-  background: #6366f1;
-  color: #fff;
-}
-
-.empty {
-  text-align: center;
-  color: #6b7280;
-  padding: 2rem 0;
-  font-size: 1.1rem;
-}
-
-.edit {
-  background: #f59e0b;
-  border: none;
-  color: white;
-  padding: 6px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.edit:hover {
-  background: #d97706;
-}
-
-.delete {
-  background: #dc2626;
-  border: none;
-  color: white;
-  padding: 6px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.delete:hover {
-  background: #b91c1c;
-}
-
-.link {
-  background: #16a34a;
-  color: white;
-  padding: 6px 10px;
-  border-radius: 4px;
-  text-decoration: none;
-}
-
-.link:hover {
-  background: #15803d;
-}
-
-.loading {
-  font-size: 1.2rem;
-  color: #555;
-  padding: 20px;
-}
-
+/* ===== Utility ===== */
 .empty {
   background: #fff;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 6px;
   text-align: center;
+  color: #6b7280;
+  font-size: 1.1rem;
 }
 
-.empty h2 {
-  margin-bottom: 16px;
-  color: #444;
-}
 .spinnerContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40vh; /* centers vertically in viewport area */
+  height: 40vh;
 }
 
 .spinner {
-  border: 4px solid #e0e7ff; /* light border */
-  border-top: 4px solid #6366f1; /* accent color */
+  border: 4px solid #e0e7ff;
+  border-top: 4px solid #6366f1;
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -558,18 +320,5 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  to { transform: rotate(360deg); }
 }
-
-.class{
-  display: flex;
-  align-items: center;
-  gap:10px;
-  justify-content: center;
-}
-
-.table th {
-  text-align: center;
-}
-

@@ -20,6 +20,11 @@ export default function ProductsPage() {
     const [description, setDescription] = useState("");
     const [editPrice, setEditPrice] = useState("");
     const [editDescription, setEditDescription] = useState("");
+    const [expandedId, setExpandedId] = useState(null);
+
+const toggleExpand = (id) => {
+  setExpandedId(expandedId === id ? null : id);
+};
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -310,35 +315,69 @@ export default function ProductsPage() {
               </div>
             )}
 
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price ($)</th>
-            <th>Description</th>
-            <th>Creation</th>
-            <th>Actions</th>
+      <div className={styles.desktopTable}>
+  <table className={styles.table}>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price ($)</th>
+        <th>Description</th>
+        <th>Creation</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {products.length > 0 ? (
+        products.map((product) => (
+          <tr key={product._id}>
+            <td data-label="Name">
+              <Image src={product?.avatar?.url || "/file.svg"} height={30} width={30} alt={product.name}/>
+              {product.name}
+            </td>
+            <td>{product.price} DA</td>
+            <td>{product.description}</td>
+            <td>{new Date(product.createdAt).toLocaleString()}</td>
+            <td className={styles.actions}>
+              <button onClick={() => openEdit(product)}><i className="fas fa-pen"></i></button>
+              <button onClick={() => openDelete(product)}><i className="fas fa-trash"></i></button>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {products.length>0? (<>{products.map((product) => (
-            <tr key={product._id}>
-              <td data-label="Name"><Image src={product?.avatar?.url || "../../public/file.svg"} height={30} width={30} alt={product.name}></Image> {product.name}</td>
-              <td data-label="price">{product.price} DA</td>
-              <td data-label="description">{product.description}</td>
-              <td data-label="creation">{new Date(product.createdAt).toLocaleString()}</td>
-              <td data-label="actions" className={styles.actions}>
-                <button className={styles.edit} onClick={() => openEdit(product)}>
-                  Edit <i className="fas fa-pen"></i>
-                </button>
-                <button className={styles.delete} onClick={() => openDelete(product)}>
-                  Delete <i className="fas fa-trash"></i>
-                </button>
-              </td>
-            </tr>
-          ))}</>): <tr><td colSpan="4">No products available.</td></tr>}
-        </tbody>
-      </table>
+        ))
+      ) : (
+        <tr><td colSpan="5">No products available.</td></tr>
+      )}
+    </tbody>
+  </table>
+</div>
+
+{/* 📱 Mobile accordion */}
+<div className={styles.mobileList}>
+  {products.length > 0 ? (
+    products.map((product) => (
+      <div key={product._id} className={styles.card}>
+        <div className={styles.cardHeader} onClick={() => toggleExpand(product._id)}>
+          <Image src={product?.avatar?.url || "/file.svg"} height={30} width={30} alt={product.name}/>
+          <span>{product.name}</span>
+          <i className={`fas ${expandedId === product._id ? "fa-chevron-up" : "fa-chevron-down"}`} />
+        </div>
+        {expandedId === product._id && (
+          <div className={styles.cardBody}>
+            <p><b>Price:</b> {product.price} DA</p>
+            <p><b>Description:</b> {product.description}</p>
+            <p><b>Created:</b> {new Date(product.createdAt).toLocaleString()}</p>
+            <div className={styles.actions}>
+              <button onClick={() => openEdit(product)}><i className="fas fa-pen"></i></button>
+              <button onClick={() => openDelete(product)}><i className="fas fa-trash"></i></button>
+            </div>
+          </div>
+        )}
+      </div>
+    ))
+  ) : (
+    <p>No products available.</p>
+  )}
+</div>
+
     </div>
   );
 }
