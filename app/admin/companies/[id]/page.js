@@ -21,6 +21,7 @@ export default function ProductsPage() {
     const [editPrice, setEditPrice] = useState("");
     const [editDescription, setEditDescription] = useState("");
     const [expandedId, setExpandedId] = useState(null);
+    const [popupLoading, setPopupLoading] = useState(false);
 
 const toggleExpand = (id) => {
   setExpandedId(expandedId === id ? null : id);
@@ -100,6 +101,7 @@ const toggleExpand = (id) => {
 
   const submit = async () => {
     try {
+      setPopupLoading(true);
       if (!catin || !file) {
         alert("you need to fill the inputs");
         return;
@@ -156,11 +158,14 @@ const toggleExpand = (id) => {
     setPop(false);
   } catch (error) {
     console.error(error);
+  } finally {
+    setPopupLoading(false);
   }
 };
 
   const deleteCat = async () => {
     try {
+      setPopupLoading(true);
       if (!selectedCat || !selectedCat._id) {
         alert("No product selected for deletion");
         return;
@@ -179,11 +184,14 @@ const toggleExpand = (id) => {
       closeDelete();
     } catch (error) {
       console.error("Error deleting product:", error);
+    } finally {
+      setPopupLoading(false);
     }
   };
 
   const editCat = async () => {
     try {
+      setPopupLoading(true);
       if (!editName || !selectedCat) {
         alert("Please provide a product name.");
         return;
@@ -235,6 +243,8 @@ const toggleExpand = (id) => {
       closeEdit();
     } catch (error) {
       console.error("Error updating product:", error);
+    } finally {
+      setPopupLoading(false);
     }
   };
 
@@ -258,18 +268,20 @@ const toggleExpand = (id) => {
                     value={catin}
                     onChange={(e) => setCatin(e.target.value)}
                     className={styles.input}
+                    disabled={popupLoading}
                   />
-                  <input type="text" placeholder="description" className={styles.input} value={description} onChange={(e) => setDescription(e.target.value)} />
-                  <input type="number" placeholder="price" className={styles.input} value={price} onChange={(e) => setPrice(e.target.value)} />
+                  <input disabled={popupLoading} type="text" placeholder="description" className={styles.input} value={description} onChange={(e) => setDescription(e.target.value)} />
+                  <input disabled={popupLoading} type="number" placeholder="price" className={styles.input} value={price} onChange={(e) => setPrice(e.target.value)} />
                   <input 
                     type="file"
                     accept="image/*"
                     onChange={(e) => setFile(e.target.files[0])}
                     className={styles.input}
+                    disabled={popupLoading}
                   />
                   <div className={styles.popupActions}>
-                    <button onClick={submit} className={styles.submitButton}>Submit</button>
-                    <button onClick={() =>{ setPop(false); setCatin("");setFile(null);setPrice("");setDescription("");} } className={styles.cancelButton}>Cancel</button>
+                    <button onClick={submit} className={styles.submitButton}>{popupLoading ? <div className={styles.spinnerr}></div> : "Submit"}</button>
+                    <button disabled={popupLoading} onClick={() =>{ setPop(false); setCatin("");setFile(null);setPrice("");setDescription("");} } className={styles.cancelButton}>Cancel</button>
                   </div>
                 </div>
               </div>
@@ -285,18 +297,20 @@ const toggleExpand = (id) => {
                     value={editName}
                     onChange={(e) => setEditName(e.target.value)}
                     className={styles.input}
+                    disabled={popupLoading}
                   />
-                  <input type="text" placeholder="description" className={styles.input} value={editDescription} onChange={(e) => setEditDescription(e.target.value)} />
-                  <input type="number" placeholder="price" className={styles.input} value={editPrice} onChange={(e) => setEditPrice(e.target.value)} />
+                  <input disabled={popupLoading} type="text" placeholder="description" className={styles.input} value={editDescription} onChange={(e) => setEditDescription(e.target.value)} />
+                  <input disabled={popupLoading} type="number" placeholder="price" className={styles.input} value={editPrice} onChange={(e) => setEditPrice(e.target.value)} />
                   <input
                     type="file"
                     accept="image/*"
                     onChange={(e) => setEditFile(e.target.files[0])}
                     className={styles.input}
+                    disabled={popupLoading}
                   />
                   <div className={styles.popupActions}>
-                    <button className={styles.submitButton} onClick={editCat}>Save</button>
-                    <button onClick={closeEdit} className={styles.cancelButton}>Cancel</button>
+                    <button className={styles.submitButton} onClick={editCat}>{popupLoading ? <div className={styles.spinnerr}></div> : "Save"}</button>
+                    <button onClick={closeEdit} disabled={popupLoading} className={styles.cancelButton}>Cancel</button>
                   </div>
                 </div>
               </div>
@@ -309,8 +323,8 @@ const toggleExpand = (id) => {
                   <h2>Delete Category</h2>
                   <p>Are you sure you want to delete <b>{selectedCat.name}</b>?</p>
                   <div className={styles.popupActions}>
-                    <button className={styles.delete} onClick={deleteCat}>Delete</button>
-                    <button onClick={closeDelete} className={styles.cancelButton}>Cancel</button>
+                    <button className={styles.delete} onClick={deleteCat}>{popupLoading ? <div className={styles.spinnerr}></div> : "Delete"}</button>
+                    <button onClick={closeDelete} disabled={popupLoading} className={styles.cancelButton}>Cancel</button>
                   </div>
                 </div>
               </div>

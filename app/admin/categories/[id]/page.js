@@ -17,6 +17,7 @@ export default function CompaniesPage() {
     const [selectedCat, setSelectedCat] = useState(null);
     const [editName, setEditName] = useState("");
     const [editFile, setEditFile] = useState(null);
+    const [popupLoading, setPopupLoading] = useState(false);
 
   useEffect(() => {
     const fetchCompanies = async () => {
@@ -84,6 +85,7 @@ export default function CompaniesPage() {
 
   const submit = async () => {
     try {
+      setPopupLoading(true);
       if (!catin || !file) {
         alert("Please provide both category name and image.");
         return;
@@ -133,11 +135,14 @@ export default function CompaniesPage() {
     setCatin("");
   } catch (error) {
     console.error(error);
+  } finally {
+    setPopupLoading(false);
   }
 };
 
   const deleteComp = async () => {
     try {
+      setPopupLoading(true);
       if (!selectedCat) return;
       const res = await fetch("/api/companies", {
         method: "DELETE",
@@ -156,11 +161,14 @@ export default function CompaniesPage() {
       closeDelete();
     } catch (error) {
       console.error(error);
+    } finally {
+      setPopupLoading(false);
     }
   };
 
   const editComp = async () => {
   try {
+    setPopupLoading(true);
     if (!editName || !selectedCat) {
       alert("Please provide a company name.");
       return;
@@ -217,6 +225,8 @@ export default function CompaniesPage() {
     closeEdit();
   } catch (error) {
     console.error("❌ Error updating company:", error.message);
+  } finally {
+    setPopupLoading(false);
   }
 };
 
@@ -241,16 +251,18 @@ export default function CompaniesPage() {
               value={catin}
               onChange={(e) => setCatin(e.target.value)}
               className={styles.input}
+              disabled={popupLoading}
             />
             <input 
               type="file"
               accept="image/*"
               onChange={(e) => setFile(e.target.files[0])}
               className={styles.input}
+              disabled={popupLoading}
             />
             <div className={styles.popupActions}>
-              <button className={styles.submitButton} onClick={submit}>Submit</button>
-              <button onClick={() =>{ setPop(false); setCatin("");setFile(null)} } className={styles.cancelButton}>Cancel</button>
+              <button className={styles.submitButton} onClick={submit}>{popupLoading ? <div className={styles.spinnerr}></div> : "Submit"}</button>
+              <button disabled={popupLoading} onClick={() =>{ setPop(false); setCatin("");setFile(null)} } className={styles.cancelButton}>Cancel</button>
             </div>
           </div>
         </div>
@@ -266,16 +278,18 @@ export default function CompaniesPage() {
               value={editName}
               onChange={(e) => setEditName(e.target.value)}
               className={styles.input}
+              disabled={popupLoading}
             />
             <input
               type="file"
               accept="image/*"
               onChange={(e) => setEditFile(e.target.files[0])}
               className={styles.input}
+              disabled={popupLoading}
             />
             <div className={styles.popupActions}>
-              <button className={styles.submitButton} onClick={editComp}>Save</button>
-              <button onClick={closeEdit} className={styles.cancelButton}>Cancel</button>
+              <button className={styles.submitButton} onClick={editComp}>{popupLoading ? <div className={styles.spinnerr}></div> : "Save"}</button>
+              <button onClick={closeEdit} disabled={popupLoading} className={styles.cancelButton}>Cancel</button>
             </div>
           </div>
         </div>
@@ -288,8 +302,8 @@ export default function CompaniesPage() {
             <h2>Delete Category</h2>
             <p>Are you sure you want to delete <b>{selectedCat.name}</b>?</p>
             <div className={styles.popupActions}>
-              <button className={styles.delete} onClick={deleteComp}>Delete</button>
-              <button onClick={closeDelete} className={styles.cancelButton}>Cancel</button>
+              <button className={styles.delete} onClick={deleteComp}>{popupLoading ? <div className={styles.spinnerr}></div> : "Delete"}</button>
+              <button onClick={closeDelete} disabled={popupLoading} className={styles.cancelButton}>Cancel</button>
             </div>
           </div>
         </div>

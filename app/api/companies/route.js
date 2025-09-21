@@ -27,8 +27,8 @@ export async function POST(request) {
   try {
     const verify = await verifyAuth();
     const body = await request.json();
-    const { categoryId , name , avatar,description } = body;//
-    if (!categoryId || !name || !avatar?.url || !avatar?.public_id||!description) {
+    const { categoryId , name , avatar } = body;//
+    if (!categoryId || !name || !avatar?.url || !avatar?.public_id) {
       return NextResponse.json({ error: "categoryId, name are required" }, { status: 400 });
     }
 

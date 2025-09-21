@@ -14,6 +14,8 @@ export default function CategoriesPage() {
   const [selectedCat, setSelectedCat] = useState(null);
   const [editName, setEditName] = useState("");
   const [editFile, setEditFile] = useState(null);
+  const [popupLoading, setPopupLoading] = useState(false);
+
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -72,6 +74,7 @@ export default function CategoriesPage() {
 
   const submit = async () => {
     try {
+      setPopupLoading(true);
       if (!catin || !file) {
         alert("you need to fill the inputs");
         return;
@@ -122,11 +125,14 @@ export default function CategoriesPage() {
     setPop(false);
   } catch (error) {
     console.error(error);
+  } finally {
+    setPopupLoading(false); // stop spinner
   }
 };
 
   const deleteCat = async () => {
     try {
+      setPopupLoading(true);
       if (!selectedCat || !selectedCat._id) {
         alert("No category selected for deletion");
         return;
@@ -146,11 +152,14 @@ export default function CategoriesPage() {
       closeDelete();
     } catch (error) {
       console.error("Error deleting category:", error);
-    }
+    } finally {
+    setPopupLoading(false); // stop spinner
+  }
   };
 
   const editCat = async () => {
     try {
+      setPopupLoading(true);
       if (!editName) {
         alert("Category name cannot be empty");
         return;
@@ -206,7 +215,10 @@ export default function CategoriesPage() {
       closeEdit();
     } catch (error) {
       console.error("Error updating category:", error);
-    }}
+    } finally {
+    setPopupLoading(false); // stop spinner
+  }
+  }
 
   return (
     <div className={styles.body}>
@@ -225,16 +237,18 @@ export default function CategoriesPage() {
               value={catin}
               onChange={(e) => setCatin(e.target.value)}
               className={styles.input}
+              disabled={popupLoading}
             />
             <input 
               type="file"
               accept="image/*"
               onChange={(e) => setFile(e.target.files[0])}
               className={styles.input}
+              disabled={popupLoading}
             />
             <div className={styles.popupActions}>
-              <button onClick={submit} className={styles.submitButton}>Submit</button>
-              <button onClick={() =>{ setPop(false); setCatin("");setFile(null)} } className={styles.cancelButton}>Cancel</button>
+              <button onClick={submit} className={styles.submitButton}>{popupLoading ? <div className={styles.spinnerr}></div> : "Submit"}</button>
+              <button disabled={popupLoading} onClick={() =>{ setPop(false);  setCatin("");setFile(null)} } className={styles.cancelButton}>Cancel</button>
             </div>
           </div>
         </div>
@@ -250,16 +264,18 @@ export default function CategoriesPage() {
               value={editName}
               onChange={(e) => setEditName(e.target.value)}
               className={styles.input}
+              disabled={popupLoading}
             />
             <input
               type="file"
               accept="image/*"
               onChange={(e) => setEditFile(e.target.files[0])}
               className={styles.input}
+              disabled={popupLoading}
             />
             <div className={styles.popupActions}>
-              <button className={styles.submitButton} onClick={editCat}>Save</button>
-              <button onClick={closeEdit} className={styles.cancelButton}>Cancel</button>
+              <button className={styles.submitButton} onClick={editCat}>{popupLoading ? <div className={styles.spinnerr}></div> : "Save"}</button>
+              <button onClick={closeEdit} disabled={popupLoading} className={styles.cancelButton}>Cancel</button>
             </div>
           </div>
         </div>
@@ -272,8 +288,9 @@ export default function CategoriesPage() {
             <h2>Delete Category</h2>
             <p>Are you sure you want to delete <b>{selectedCat.name}</b>?</p>
             <div className={styles.popupActions}>
-              <button className={styles.delete} onClick={deleteCat}>Delete</button>
-              <button onClick={closeDelete} className={styles.cancelButton}>Cancel</button>
+              <button className={styles.delete} onClick={deleteCat}>{popupLoading ? <div className={styles.spinnerr}></div> : "Delete"}
+</button>
+              <button onClick={closeDelete} disabled={popupLoading} className={styles.cancelButton}>Cancel</button>
             </div>
           </div>
         </div>
