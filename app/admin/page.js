@@ -210,6 +210,7 @@ export default function CategoriesPage() {
 
   return (
     <div className={styles.body}>
+      <div className={styles.cover}>
       <h1 className={styles.heading}>Categories</h1>
       <button className={styles.addButton} onClick={addCat}>+ Add Category</button>
 
@@ -311,6 +312,7 @@ export default function CategoriesPage() {
           :(<tr><td colSpan="3">No categories available</td></tr>)}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

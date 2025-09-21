@@ -226,7 +226,8 @@ export default function CompaniesPage() {
         </div>);
 
   return (
-    <div>
+    <div className={styles.body}>
+      <div className={styles.cover}>
       <h1 className={styles.heading}>Companies in {categoryName?.name}</h1>
       <button className={styles.addButton} onClick={addCat}>+ Add Company</button>
 
@@ -318,7 +319,7 @@ export default function CompaniesPage() {
                   href={`/admin/companies/${encodeURIComponent(company._id)}`}
                   className={styles.link}
                 >
-                  ▶ Companies
+                 <p>Products</p> <i className="fas fa-shopping-bag"></i>
                 </Link>
               </td>
             </tr>
@@ -326,6 +327,7 @@ export default function CompaniesPage() {
           :<tr><td colSpan="3">No companies available</td></tr>}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

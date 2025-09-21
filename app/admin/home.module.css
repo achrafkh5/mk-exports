@@ -6,132 +6,6 @@
   display: none;
 }
 
-@media (max-width: 768px) {
-  .desktopTable {
-    display: none;
-  }
-  .mobileList {
-    display: block;
-  }
-
-  .card {
-    border: 1px solid #ddd;
-    border-radius: 0.8rem;
-    margin-bottom: 1rem;
-    overflow: hidden;
-  }
-
-  .cardHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background: #f3f4f6;
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  .cardBody {
-    padding: 1rem;
-    background: #fff;
-  }
-
-  /* Actions → icons only */
-  .actions button span,
-  .actions a span {
-    display: none;
-  }
-
-  .actions button,
-  .actions a {
-    padding: 0.5rem;
-    border-radius: 6px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-/* ===== Responsive Table (<=600px) ===== */
-@media (max-width: 600px) {
-  .tableWrapper {
-    padding: 0.5rem 0.2rem;
-    margin-bottom: 1.2rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 18px rgba(60, 60, 120, 0.10);
-    background: #fff;
-    border: 1px solid #e0e7ff;
-    overflow-x: auto;
-  }
-
-  .table,
-  .table thead,
-  .table tbody,
-  .table th,
-  .table td,
-  .table tr {
-    display: block;
-    width: 93%;
-  }
-
-  .table {
-    margin-left: 10px;
-  }
-
-  .table thead {
-    display: none;
-  }
-
-  .input {
-    width: 70%;
-    padding: 0.6rem 0.8rem;
-    font-size: 0.95rem;
-    border-radius: 7px;
-    margin-bottom: 0.7rem;
-    box-shadow: 0 1px 4px rgba(60, 60, 120, 0.04);
-  }
-
-  .table tr {
-    margin-bottom: 1rem;
-    border: 1px solid #e0e7ff;
-    border-radius: 0.8rem;
-    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
-    background: #fff;
-    padding: 0.8rem;
-  }
-
-  .table td {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.6rem 0.4rem;
-    border: none;
-    border-bottom: 1px solid #f1f5f9;
-  }
-
-  .table td:last-child {
-    border-bottom: none;
-  }
-
-  .table td::before {
-    content: attr(data-label);
-    font-weight: 600;
-    color: #312e81;
-    margin-right: 0.6rem;
-    flex-shrink: 0;
-  }
-
-  .actions {
-    gap: 0.5rem;
-    margin: 0.5rem 0;
-    justify-content: flex-start;
-  }
-
-  .actions button p,
-  .actions p {
-    display: none;
-  }
-}
 
 /* ===== General Actions ===== */
 .actions {
@@ -296,9 +170,19 @@
   overflow-x: auto;
   border: 1px solid #e0e7ff;
 }
-
-.table {
+.heading{
+  margin-bottom: 30px ;
+}
+.body{
   width: 100%;
+  margin: 0;
+}
+.cover{
+  margin-left :20px ;
+}
+.table {
+  margin: 0 auto;
+  width: 80%;
   border-collapse: separate;
   border-spacing: 0;
   font-size: 1.08rem;
@@ -313,10 +197,18 @@
 }
 
 .table td {
-  background: #f8fafc;
+  background: #fff;
   padding: 1rem 0.75rem;
   border-bottom: 1px solid #e5e7eb;
+  height: 2.5rem;
+  text-align: center;
 }
+table td:first-child {
+  text-align: left;
+  align-items: center;
+}
+
+
 
 .table tr:last-child td {
   border-bottom: none;
@@ -351,4 +243,137 @@
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .desktopTable {
+    display: none;
+  }
+  .mobileList {
+    display: block;
+  }
+
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 0.8rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f3f4f6;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .cardBody {
+    padding: 1rem;
+    background: #fff;
+  }
+
+  /* Actions → icons only */
+  .actions button span,
+  .actions a span {
+    display: none;
+  }
+
+  .actions button,
+  .actions a {
+    padding: 0.5rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ===== Responsive Table (<=600px) ===== */
+@media (max-width: 600px) {
+  .tableWrapper {
+    padding: 0.5rem 0.2rem;
+    margin-bottom: 1.2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 18px rgba(60, 60, 120, 0.10);
+    background: #fff;
+    border: 1px solid #e0e7ff;
+    overflow-x: auto;
+  }
+  .heading{
+    font-size: 25px;
+  }
+
+  .table thead,
+  .table tbody,
+  .table th,
+  .table td,
+  .table tr {
+    display: block;
+    width: 93%;
+  }
+
+  .table {
+    margin-left: 10px;
+    width: 92vw;
+  }
+  .cover{
+    width: 92vw;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .input {
+    width: 70%;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
+    border-radius: 7px;
+    margin-bottom: 0.7rem;
+    box-shadow: 0 1px 4px rgba(60, 60, 120, 0.04);
+  }
+
+  .table tr {
+    margin-bottom: 1rem;
+    border: 1px solid #e0e7ff;
+    border-radius: 0.8rem;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+    background: #fff;
+    padding: 0.8rem;
+  }
+
+  .table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0.4rem;
+    border: none;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .table td:last-child {
+    border-bottom: none;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #312e81;
+    margin-right: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  .actions {
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    justify-content: flex-start;
+  }
+
+  .actions button p,
+  .actions p {
+    display: none;
+  }
 }

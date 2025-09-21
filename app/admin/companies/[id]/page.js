@@ -243,7 +243,8 @@ const toggleExpand = (id) => {
   }
 
   return (
-    <div>
+    <div className={styles.body}>
+    <div className={styles.cover}>
       <h1 className={styles.heading}>Products in {categoryName?.name}</h1>
       <button className={styles.addButton} onClick={addCat}>+ Add Product</button>
 
@@ -377,7 +378,7 @@ const toggleExpand = (id) => {
     <p>No products available.</p>
   )}
 </div>
-
+</div>
     </div>
   );
 }
