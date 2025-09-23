@@ -8,7 +8,7 @@ export default function Header() {
       <div className={styles.container}>
 
         <Link href="/admin" className={styles.logo} prefetch={true}>
-          <Image src="../../public/mk exports.jpg" width={50} alt="mk exports" height={50} />
+          <Image src={"/mk_exports_copy-removebg-preview.png"} width={60} alt="mk exports" height={60} /> MK Exports
         </Link>
 
       </div>

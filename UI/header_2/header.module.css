@@ -3,14 +3,15 @@
   z-index: 100;
   background: linear-gradient(120deg, #c7d2fe 0%, #cedafe 100%);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  height: 10%;
+  height: 10vh;
   margin: 0;
+  max-height: 10vh;
 }
 
 .header .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,8 +20,11 @@
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #0070f3;
+  color: #073457;
+  display: flex;
+  align-items: center;
   text-decoration: none;
+  gap: 10px;
 }
 
 .nav {

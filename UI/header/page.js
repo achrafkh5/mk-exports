@@ -3,14 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import styles from "./header.module.css";
-
+import Image from "next/image";
 export default function Header() {
   const [navOpen, setNavOpen] = useState(false);
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <Link href="/" className={styles.logo} prefetch={true}>
-          mk exports
+        <Link href="/admin" className={styles.logo} prefetch={true}>
+          <Image src={"/mk_exports_copy-removebg-preview.png"} width={50} alt="mk exports" height={50} /> MK Exports
         </Link>
 
         {/* Hamburger button for mobile */}

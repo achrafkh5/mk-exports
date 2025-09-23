@@ -1,14 +1,14 @@
 // components/Footer.jsx
 import Link from "next/link";
 import styles from "./footer.module.css";
-
+import Image from "next/image";
 export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         {/* Logo / Shop name */}
         <div className={styles.footer_left}>
-          <h2 className={styles.foote_logor}>MyShop</h2>
+          <div className={styles.logo}><Image src={"/colored-logo (1).png"} width={60} alt="mk exports" height={60} /> <h2 className={styles.foote_logor}>MK Exports</h2></div>
           <p>Best place to find products from top companies.</p>
         </div>
 
