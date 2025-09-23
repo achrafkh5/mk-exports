@@ -353,8 +353,8 @@ const toggleExpand = (id) => {
             <td>{product.description}</td>
             <td>{new Date(product.createdAt).toLocaleString()}</td>
             <td className={styles.actions}>
-              <button onClick={() => openEdit(product)}><i className="fas fa-pen"></i></button>
-              <button onClick={() => openDelete(product)}><i className="fas fa-trash"></i></button>
+              <button className={styles.edit} onClick={() => openEdit(product)}>edit <i className="fas fa-pen"></i></button>
+              <button className={styles.delete} onClick={() => openDelete(product)}>delete <i className="fas fa-trash"></i></button>
             </td>
           </tr>
         ))
@@ -381,8 +381,8 @@ const toggleExpand = (id) => {
             <p><b>Description:</b> {product.description}</p>
             <p><b>Created:</b> {new Date(product.createdAt).toLocaleString()}</p>
             <div className={styles.actions}>
-              <button onClick={() => openEdit(product)}><i className="fas fa-pen"></i></button>
-              <button onClick={() => openDelete(product)}><i className="fas fa-trash"></i></button>
+              <button className={styles.edit} onClick={() => openEdit(product)}>edit <i className="fas fa-pen"></i></button>
+              <button className={styles.delete} onClick={() => openDelete(product)}>delete <i className="fas fa-trash"></i></button>
             </div>
           </div>
         )}
