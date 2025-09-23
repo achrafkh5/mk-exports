@@ -21,7 +21,7 @@ export default function Footer() {
 
         {/* Contact Info */}
         <div className={styles.footer_contact}>
-          <a href="mailto:admin@myshop.com">admin@myshop.com</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mk.exports.algeria@gmail.com" target="_blank">mk.exports.algeria@gmail.com</a>
           <a href="tel:+213659911059">+213 659 91 10 59</a>
           <a
             href="https://wa.me/213659911059"
