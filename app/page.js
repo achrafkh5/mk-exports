@@ -47,24 +47,21 @@ export default function HomePage() {
     <section id="who" className={styles.infoSection}>
       <h2 className={styles.infoTitle}>Who We Are</h2>
       <p className={styles.infoContent}>
-        We are a modern company driven by innovation, dedicated to creating value
-        for our partners and customers through technology and collaboration.
+        Mk exports is an Algerian/Arab company specialized in exporting various produckts to global markets. We connect high-quality local products with international buyers, while strictly adhering to international standards in packaging, labeling, and shipping.
       </p>
     </section>
 
     <section id="capital" className={styles.infoSection}>
       <h2 className={styles.infoTitle}>Capital</h2>
       <p className={styles.infoContent}>
-        With a strong capital base, we invest in long-term growth, supporting
-        sustainable development and innovation across industries.
+        10 millions algerian dinar
       </p>
     </section>
 
     <section id="countries" className={styles.infoSection}>
-      <h2 className={styles.infoTitle}>Countries</h2>
+      <h2 className={styles.infoTitle}>Our Vision</h2>
       <p className={styles.infoContent}>
-        Our presence spans multiple countries, giving us a global perspective while
-        maintaining strong local connections.
+        To strengthen the presence of our products in the global market by providing reliable export solutions and building long-term business relationships based on trust, credibility, and professionalism.
       </p>
     </section>
 
