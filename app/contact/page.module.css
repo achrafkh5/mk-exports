@@ -206,8 +206,11 @@
     font-size: 0.98rem;
   }
   .contactForm {
-    width: 75%;
+    width: 90%;
     gap: 0.9rem;
     margin-left: 0;
+  }
+  .input,.textarea{
+    padding-right: 0;
   }
 }
