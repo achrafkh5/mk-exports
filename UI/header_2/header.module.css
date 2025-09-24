@@ -27,32 +27,90 @@
   gap: 10px;
 }
 
-.nav {
+.logout {
+  color: red;
+}
+.logout:hover {
+  color: darkred;
+  cursor: pointer;
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(49, 46, 129, 0.18);
   display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+.popupActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+}
+.popupContent {
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 32px rgba(60, 60, 120, 0.18);
+  padding: 2.5rem 2rem;
+  min-width: 320px;
+  max-width: 90vw;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
+  align-items: center;
 }
 
-.nav a {
-  text-decoration: none;
-  color: #333;
+.popupContent h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #312e81;
+  margin-bottom: 0.5rem;
+}
+
+.popupContent p {
+  color: #444;
+  font-size: 1.08rem;
+  margin-bottom: 0.5rem;
+}
+.delete,.cancelButton {
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
   font-size: 1rem;
-  transition: color 0.2s;
 }
 
-.nav a:hover {
-  color: #0070f3;
-}
-
-.whatsapp_btn {
-  background: #1ebe5c;
+.delete {
+  background: #dc2626;
   color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background 0.2s;
+  padding: 6px 10px;
 }
-
-.whatsapp_btn:hover {
-  background: #25d366;
+.delete:hover {
+  background: #b91c1c;
+}
+.cancelButton {
+  background: #e0e7ff;
+  color: #312e81;
+  padding: 0.75rem 1.5rem;
+}
+.cancelButton:hover {
+  background: #6366f1;
+  color: #fff;
+}
+.spinnerr {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #6366f1;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 0.6s linear infinite;
+  margin: auto;
 }
