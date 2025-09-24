@@ -12,17 +12,30 @@ export default function ContactPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-    setSuccess(false);
-    // Simulate API call
-    setTimeout(() => {
-      setLoading(false);
-      setSuccess(true);
-    }, 1200);
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setError("");
+  setSuccess(false);
+
+  try {
+    const res = await fetch("https://formspree.io/f/mvgwgoge", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    if (!res.ok) throw new Error("Failed to send message");
+
+    setSuccess(true);
+    setForm({ name: "", email: "", message: "" }); // reset
+  } catch (err) {
+    setError("Something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className={styles.contactBody}>
@@ -33,11 +46,11 @@ export default function ContactPage() {
         <div className={styles.contactInfoSection}>
           <div className={styles.contactInfoRow}>
             <span className={styles.contactInfoLabel}>Phone:</span>
-            <a href="tel:+1234567890" className={styles.contactInfoValue}>+1 234 567 890</a>
+            <a href="tel:+213659911059" className={styles.contactInfoValue}>+213 659 91 10 59</a>
           </div>
           <div className={styles.contactInfoRow}>
             <span className={styles.contactInfoLabel}>Location:</span>
-            <span className={styles.contactInfoValue}>123 Main St, City, Country</span>
+            <span className={styles.contactInfoValue}>Batna, Algeria</span>
           </div>
           <div className={styles.socialRow}>
             <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener" className={styles.socialIcon} aria-label="Instagram">
@@ -48,9 +61,6 @@ export default function ContactPage() {
             </a>
             <a href="https://wa.me/1234567890" target="_blank" rel="noopener" className={styles.socialIcon} aria-label="WhatsApp">
               <i className="fab fa-whatsapp"></i>
-            </a>
-            <a href="https://tiktok.com/@yourprofile" target="_blank" rel="noopener" className={styles.socialIcon} aria-label="LinkedIn">
-              <i className="fab fa-linkedin"></i>
             </a>
           </div>
         </div>
