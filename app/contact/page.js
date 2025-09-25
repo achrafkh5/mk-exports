@@ -19,7 +19,7 @@ const handleSubmit = async (e) => {
   setSuccess(false);
 
   try {
-    const res = await fetch("https://formspree.io/f/mvgwgoge", {
+    const res = await fetch("https://formspree.io/f/mvgwgwkg", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
@@ -59,7 +59,7 @@ const handleSubmit = async (e) => {
             <a href="https://www.facebook.com/share/174RJxb9S5/?mibextid=wwXIfr" target="_blank" rel="noopener" className={styles.socialIcon} aria-label="Facebook">
               <i className="fab fa-facebook"></i>
             </a>
-            <a href="https://wa.me/1234567890" target="_blank" rel="noopener" className={styles.socialIcon} aria-label="WhatsApp">
+            <a href="https://wa.me/+213659911059" target="_blank" rel="noopener" className={styles.socialIcon} aria-label="WhatsApp">
               <i className="fab fa-whatsapp"></i>
             </a>
           </div>

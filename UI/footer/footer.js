@@ -16,20 +16,24 @@ export default function Footer() {
         <nav className={styles.footer_nav}>
           <Link href="/" prefetch={true}>Home</Link>
           <Link href="/login" prefetch={true}>account</Link>
-          <Link href="/contact" prefetch={true}>Contact</Link>
+          <Link href="/contact" prefetch={true}>Contact Us</Link>
         </nav>
 
         {/* Contact Info */}
         <div className={styles.footer_contact}>
           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mk.exports.algeria@gmail.com" target="_blank">mk.exports.algeria@gmail.com</a>
           <a href="tel:+213659911059">+213 659 91 10 59</a>
-          <a
-            href="https://wa.me/213659911059"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            WhatsApp
-          </a>
+          <div className={styles.socialRow}>
+            <a href="https://www.instagram.com/mk.exports.algeria?igsh=MTZwbTI1bXh4bTlhMg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/share/174RJxb9S5/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Facebook">
+              <i className="fab fa-facebook"></i>
+            </a>
+            <a href="https://wa.me/+213659911059" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="WhatsApp">
+              <i className="fab fa-whatsapp"></i>
+            </a>
+          </div>
         </div>
       </div>
 
