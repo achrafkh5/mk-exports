@@ -53,10 +53,10 @@ const handleSubmit = async (e) => {
             <span className={styles.contactInfoValue}>Batna, Algeria</span>
           </div>
           <div className={styles.socialRow}>
-            <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener" className={styles.socialIcon} aria-label="Instagram">
+            <a href="https://www.instagram.com/mk.exports.algeria?igsh=MTZwbTI1bXh4bTlhMg%3D%3D&utm_source=qr" target="_blank" rel="noopener" className={styles.socialIcon} aria-label="Instagram">
               <i className="fab fa-instagram"></i>
             </a>
-            <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener" className={styles.socialIcon} aria-label="Facebook">
+            <a href="https://www.facebook.com/share/174RJxb9S5/?mibextid=wwXIfr" target="_blank" rel="noopener" className={styles.socialIcon} aria-label="Facebook">
               <i className="fab fa-facebook"></i>
             </a>
             <a href="https://wa.me/1234567890" target="_blank" rel="noopener" className={styles.socialIcon} aria-label="WhatsApp">
