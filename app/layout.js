@@ -39,6 +39,12 @@ export default function RootLayout({ children }) {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="./favicon.ico" />
+        <title>MK Exports - Quality Products Worldwide</title>
+        <meta name="description" content="Official website of MK Exports. Explore our high-quality products and services." />
+        <meta name="keywords" content="MK Exports, exports, products, international trade" />
+        <meta property="og:title" content="MK Exports - Quality Products Worldwide" />
+        <meta property="og:description" content="Official website of MK Exports." />
+        <meta property="og:url" content="https://mk-exports.vercel.app" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`} style={{margin:0}}>
   
