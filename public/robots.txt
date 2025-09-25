@@ -1,4 +1,9 @@
+# *
 User-agent: *
 Allow: /
 
+# Host
+Host: https://mk-exports.vercel.app
+
+# Sitemaps
 Sitemap: https://mk-exports.vercel.app/sitemap.xml

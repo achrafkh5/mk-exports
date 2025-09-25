@@ -8,6 +8,19 @@ const nextConfig = {
       },
     ],
   },
-};
+  async headers() {
+    return [
+      {
+        source: '/:path*.xml',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/xml',
+          },
+        ],
+      },
+    ]
+  },
+}
 
-export default nextConfig;
+export default nextConfig
