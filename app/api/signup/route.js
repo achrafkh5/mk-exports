@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import clientPromise from "@/lib/mongodb";
 
-export async function POST(request) {
+/*export async function POST(request) {
   try {
     const body = await request.json();
   const { password, email } = body;
@@ -27,4 +27,4 @@ export async function POST(request) {
     console.error("Error during signup:", error);
     return NextResponse.json({ error: "Internal Server Error" },{status:500});
   }
-};
+};*/

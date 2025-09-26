@@ -32,7 +32,7 @@ function Signup() {
     document.getElementById("sign-pass").style.border = "solid 2px grey";
   };
 
-  const handleSignUp = async () => {
+  /*const handleSignUp = async () => {
     setLoading(true);
     resetBorders();
     removeError("err-mail");
@@ -86,7 +86,7 @@ function Signup() {
       setLoading(false);
     }
   };
-
+*/
   return (
     <div className={styles.body}>
       <div className={styles.login}>
@@ -111,7 +111,7 @@ function Signup() {
           <i className="fas fa-lock"></i>
         </div>
         <p>Already have an account? <Link href="/login" prefetch={true}><strong className={styles.strong}><span style={loading ? { pointerEvents: 'none', opacity: 0.7 } : {}}>Login</span></strong></Link></p>
-        <button onClick={handleSignUp} disabled={loading} style={loading ? { opacity: 0.7, cursor: 'not-allowed' } : {}}>
+        <button disabled={true} style={loading ? { opacity: 0.7, cursor: 'not-allowed' } : {}}>
           {loading ? (
             <FaSpinner className={styles.spinner} style={{ marginRight: 8, fontSize: '1.2em', verticalAlign: 'middle' }} />
           ) : null}
