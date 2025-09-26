@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(120deg, #f5f5f5 0%, #eee9e4 100%);
+  background: linear-gradient(120deg, #312e81 0%, #6366f1 100%);
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   position: relative;
 }
@@ -26,7 +26,7 @@
 .login {
   position: relative;
   z-index: 1;
-  background: rgba(255, 250, 245, 0.92);
+  background: rgba(255, 255, 255, 0.92);
   padding: 2.2rem 1.5rem;
   border-radius: 1.25rem;
   box-shadow: 0 8px 32px rgba(121, 85, 72, 0.10);
@@ -44,7 +44,7 @@
   text-align: center;
   font-size: 2rem;
   font-weight: 700;
-  color: #652838;
+  color: #312e81;
   margin-bottom: 0.7rem;
   letter-spacing: 1px;
 }
@@ -52,16 +52,16 @@
 /* All icons green and same size using :global for CSS modules */
 .body :global(.fa-envelope),
 .body :global(.fa-phone),
-.body :global(.fa-user),.body
+.body :global(.fa-user),
 .body :global(.fa-lock),
- .body :global(.fa-utensils) {
-  color: #652838;
+ .body :global(.fa-home) {
+  color: #312e81;
   font-size: 1.3rem;
 }
 
 /* Home icon: bigger and black */
 .ii :global(.fa-home) {
-  color: #6d132b !important;
+  color: #312e81 !important;
   font-size: 1.7rem !important;
 }
 .ii {
@@ -81,7 +81,7 @@
   gap: 0.7rem;
   border: 1.5px solid #cacaca;
   transition: border 0.2s, box-shadow 0.2s;
-  color: #6d132b;
+  color: #28294c;
 }
 /* Error state for input container */
 .email.error,
@@ -93,7 +93,7 @@
 /* Highlight container border green when input inside is focused */
 .email:focus-within,
 .pass:focus-within {
-  border: 2px solid #7C4855;
+  border: 2px solid #6366f1;
   box-shadow: 0 0 0 2px 894b00(38, 198, 218, 0.10);
   position: relative;
 }
@@ -108,8 +108,8 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #782e40;
-  box-shadow: 0 0 8px 2px #7C4855;
+  background: #312e81;
+  box-shadow: 0 0 8px 2px #7f81f8;
   z-index: 2;
   pointer-events: none;
   animation: roll-light 5s linear infinite;
@@ -131,7 +131,7 @@
   font-size: 1rem;
   outline: none;
   padding: 0.5rem 0;
-  color: #7C4855;
+  color: #28294c;
   transition: border 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
@@ -147,7 +147,7 @@
 .body button {
   width: 100%;
   padding: 0.85rem 0;
-  background: linear-gradient(90deg, #7C4855 0%, #501C29 100%);
+  background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
   color: #fff;
   font-size: 1.1rem;
   font-weight: 600;
@@ -161,7 +161,7 @@
 }
 
 .body button:hover {
-  background: linear-gradient(90deg, #501C29 0%, #7C4855 100%);
+  background: linear-gradient(90deg, #4338ca 0%, #2563eb 100%);
   transform: translateY(-2px) scale(1.03);
 }
 
@@ -198,8 +198,12 @@
 }
 
 .strong {
-  color: #7C4855;
+  color: #28294c;
   cursor: pointer;
+  text-decoration: none;
+}
+.strong:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 600px) {
@@ -213,15 +217,26 @@
     border-radius: 0.8rem;
   }
   .body h1 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
   .email, .pass {
     padding: 0.4rem 0.4rem;
     font-size: 0.95rem;
+    width: 90%;
+    align-items: center;
+    margin-bottom: 0;
+  }
+  .footer{
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0;
+    width: 100%;
   }
   .login button {
     font-size: 0.95rem;
     padding: 0.6rem 0;
+    width: 90%;
+    margin-top: 0;
   }
 }
 @media (max-width: 600px) {
@@ -232,6 +247,9 @@
   }
   .login {
     margin-top: 0 !important;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 2.5rem 0.3rem !important;
   }
 }
 /* Error message styles */
@@ -252,4 +270,9 @@
 }
 @keyframes spin {
   100% { transform: rotate(360deg); }
+}
+.login button:disabled,.login input:disabled,.strong:disabled {
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }
