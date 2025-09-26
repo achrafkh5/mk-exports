@@ -101,6 +101,7 @@
   height: 10vh;
   margin: 0;
   max-height: 10vh;
+  font-family: Inter, Segoe UI, Arial, sans-serif;
 }
 
 .header .container {
