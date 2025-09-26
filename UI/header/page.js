@@ -15,7 +15,7 @@ export default function Header() {
 
         {/* Hamburger button for mobile */}
         <button
-          className={styles.hamburger}
+          className={navOpen ? styles.hamburgerOpen : styles.hamburger}
           aria-label="Toggle navigation"
           onClick={() => setNavOpen((open) => !open)}
         >

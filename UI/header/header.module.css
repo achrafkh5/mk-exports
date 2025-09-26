@@ -10,7 +10,7 @@
   padding: 0.5rem;
   margin-left: 0.5rem;
 }
-.hamburgerBar {
+.hamburger .hamburgerBar {
   width: 24px;
   height: 3px;
   background: #312e81;
@@ -18,17 +18,37 @@
   border-radius: 2px;
   transition: all 0.3s;
 }
+.hamburgerOpen {
+  display: none;
+  background: none;
+  border: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+}
+.hamburgerOpen .hamburgerBar {
+  height: 24px;
+  width: 3px;
+  background: #312e81;
+  margin: 0 3px;
+  border-radius: 2px;
+}
+
 
 @media (max-width: 600px) {
   .header .container {
     position: relative;
   }
-  .hamburger {
+  .hamburger, .hamburgerOpen {
     display: flex !important;
     position: absolute;
     right: 1rem;
     top: 1rem;
     z-index: 1001;
+    margin-right: 5px;
   }
   .nav {
     position: absolute;
