@@ -41,3 +41,10 @@
   background: linear-gradient(90deg, #4338ca 0%, #6366f1 100%);
   transform: scale(1.04);
 }
+
+@media (max-width: 600px) {
+  .emptyState {
+    padding: 2rem 1rem;
+    width: 85%;
+  }
+}
