@@ -377,7 +377,7 @@ const toggleExpand = (id) => {
         </div>
         {expandedId === product._id && (
           <div className={styles.cardBody}>
-            <p><b>Price:</b> {product.price} DA</p>
+            <p><b>Price:</b> {product.price} $</p>
             <p><b>Description:</b> {product.description}</p>
             <p><b>Created:</b> {new Date(product.createdAt).toLocaleString()}</p>
             <div className={styles.actions}>

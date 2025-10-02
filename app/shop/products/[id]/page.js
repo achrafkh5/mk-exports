@@ -91,7 +91,7 @@ export default function ProductsPage({ params }) {
             )}
             <div className={styles.wst}>
             <h2 style={{ marginBottom: '0.5rem' }}>{selectedProduct.name}</h2>
-            <div className={styles.price} style={{ marginBottom: '0.7rem' }}>{selectedProduct.price ? `${selectedProduct.price} DA` : "Contact for price"}</div>
+            <div className={styles.price} style={{ marginBottom: '0.7rem' }}>{selectedProduct.price ? `${selectedProduct.price} $` : "Contact for price"}</div>
             </div>
             <div className={styles.description} style={{ color: '#444', marginBottom: '1rem', fontSize: '1.05rem' }}><b><i>description: </i></b>{selectedProduct.description || "No description available."}</div>
             <button
