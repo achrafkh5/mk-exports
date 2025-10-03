@@ -63,7 +63,7 @@ export default function ProductsPage({ params }) {
                 />
               )}
               <h3>{product.name}</h3>
-              <div className={styles.price}>{product.price ? `${product.price} DA` : "Contact for price"}</div>
+              <div className={styles.price}>{product.price ? `${product.price} $` : "Contact for price"}</div>
             </div>
           ))}
         </div>
