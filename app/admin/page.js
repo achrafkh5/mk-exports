@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import styles from "./home.module.css";
+import styles from "./home-modern.module.css";
 import Image from "next/image";
 export default function CategoriesPage() {
   const [categories, setCategories] = useState([]);
@@ -221,10 +221,40 @@ export default function CategoriesPage() {
   }
 
   return (
-    <div className={styles.body}>
-      <div className={styles.cover}>
-      <h1 className={styles.heading}>Categories</h1>
-      <button className={styles.addButton} onClick={addCat}>+ Add Category</button>
+    <div className={styles.adminContainer}>
+      {/* Header Section */}
+      <div className={styles.adminHeader}>
+        <div className={styles.headerContent}>
+          <h1 className={styles.pageTitle}>Categories Management</h1>
+          <p className={styles.pageSubtitle}>Manage your product categories</p>
+        </div>
+        <button className={styles.addButton} onClick={addCat}>
+          <i className="fas fa-plus"></i>
+          Add Category
+        </button>
+      </div>
+
+      {/* Stats Cards */}
+      <div className={styles.statsGrid}>
+        <div className={styles.statCard}>
+          <div className={styles.statIcon}>
+            <i className="fas fa-layer-group"></i>
+          </div>
+          <div className={styles.statContent}>
+            <h3>{categories?.length || 0}</h3>
+            <p>Total Categories</p>
+          </div>
+        </div>
+        <div className={styles.statCard}>
+          <div className={styles.statIcon}>
+            <i className="fas fa-chart-line"></i>
+          </div>
+          <div className={styles.statContent}>
+            <h3>Active</h3>
+            <p>Status</p>
+          </div>
+        </div>
+      </div>
 
       {/* Add Category Popup */}
       {pop && (
@@ -296,39 +326,68 @@ export default function CategoriesPage() {
         </div>
       )}
 
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>creation</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {categories?.length>0 ?(<>{categories?.map((cat) => (
-            <tr key={cat._id}>
-              <td data-label="Name"><Image src={cat?.avatar?.url || "../../public/file.svg"} height={30} width={30} alt={cat.name}></Image> {cat.name}</td>
-              <td data-label="creation">{cat.createdAt ? new Date(cat.createdAt).toLocaleString() : "N/A"}</td>
-              <td data-label="actions" className={styles.actions}>
-                <button className={styles.edit} onClick={() => openEdit(cat)}>
-                  <p>Edit</p> <i className="fas fa-pen"></i>
-                </button>
-                <button className={styles.delete} onClick={() => openDelete(cat)}>
-                  <p>Delete</p> <i className="fas fa-trash"></i>
-                </button>
-                <Link
-                  href={`/admin/categories/${encodeURIComponent(cat._id)}`}
-                  className={styles.link}
-                >
-                  <p>Companies</p> <i className="fas fa-store"></i>
-                </Link>
-              </td>
-            </tr>
-          ))}</>)
-          :(<tr><td colSpan="3">No categories available</td></tr>)}
-        </tbody>
-      </table>
+      {/* Categories Grid */}
+      <div className={styles.categoriesSection}>
+        <h2 className={styles.sectionTitle}>All Categories</h2>
+        {categories?.length > 0 ? (
+          <div className={styles.categoriesGrid}>
+            {categories.map((cat) => (
+              <div key={cat._id} className={styles.categoryCard}>
+                <div className={styles.cardHeader}>
+                  <div className={styles.categoryInfo}>
+                    <div className={styles.categoryAvatar}>
+                      <Image 
+                        src={cat?.avatar?.url || "/public/file.svg"} 
+                        height={48} 
+                        width={48} 
+                        alt={cat.name}
+                        className={styles.avatarImage}
+                      />
+                    </div>
+                    <div className={styles.categoryDetails}>
+                      <h3 className={styles.categoryName}>{cat.name}</h3>
+                      <p className={styles.categoryDate}>
+                        Created {cat.createdAt ? new Date(cat.createdAt).toLocaleDateString() : "N/A"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className={styles.categoryStatus}>
+                    <span className={styles.statusBadge}>Active</span>
+                  </div>
+                </div>
+                <div className={styles.cardActions}>
+                  <button className={styles.actionEdit} onClick={() => openEdit(cat)}>
+                    <i className="fas fa-edit"></i>
+                    Edit
+                  </button>
+                  <button className={styles.actionDelete} onClick={() => openDelete(cat)}>
+                    <i className="fas fa-trash"></i>
+                    Delete
+                  </button>
+                  <Link
+                    href={`/admin/categories/${encodeURIComponent(cat._id)}`}
+                    className={styles.actionView}
+                  >
+                    <i className="fas fa-eye"></i>
+                    View
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className={styles.emptyState}>
+            <div className={styles.emptyIcon}>
+              <i className="fas fa-folder-open"></i>
+            </div>
+            <h3>No Categories Found</h3>
+            <p>Start by creating your first category</p>
+            <button className={styles.emptyButton} onClick={addCat}>
+              <i className="fas fa-plus"></i>
+              Create Category
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import styles from "../../home.module.css";
+import styles from "../../home-modern.module.css";
 import Image from "next/image";
 
 export default function CompaniesPage() {
@@ -236,10 +236,40 @@ export default function CompaniesPage() {
         </div>);
 
   return (
-    <div className={styles.body}>
-      <div className={styles.cover}>
-      <h1 className={styles.heading}>Companies in {categoryName?.name}</h1>
-      <button className={styles.addButton} onClick={addCat}>+ Add Company</button>
+    <div className={styles.adminContainer}>
+      {/* Header Section */}
+      <div className={styles.adminHeader}>
+        <div className={styles.headerContent}>
+          <h1 className={styles.pageTitle}>Companies Management</h1>
+          <p className={styles.pageSubtitle}>Manage companies in {categoryName?.name}</p>
+        </div>
+        <button className={styles.addButton} onClick={addCat}>
+          <i className="fas fa-plus"></i>
+          Add Company
+        </button>
+      </div>
+
+      {/* Stats Cards */}
+      <div className={styles.statsGrid}>
+        <div className={styles.statCard}>
+          <div className={styles.statIcon}>
+            <i className="fas fa-building"></i>
+          </div>
+          <div className={styles.statContent}>
+            <h3>{companies?.length || 0}</h3>
+            <p>Total Companies</p>
+          </div>
+        </div>
+        <div className={styles.statCard}>
+          <div className={styles.statIcon}>
+            <i className="fas fa-chart-line"></i>
+          </div>
+          <div className={styles.statContent}>
+            <h3>Active</h3>
+            <p>Status</p>
+          </div>
+        </div>
+      </div>
 
       {pop && (
         <div className={styles.popup}>
@@ -309,38 +339,68 @@ export default function CompaniesPage() {
         </div>
       )}
 
-      <table className={styles.table}>
-        <thead>
-          <tr >
-            <th>Name</th>
-            <th>creation</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {companies?.length>0?(<>{companies?.map((company) => (
-            <tr key={company._id}>
-              <td data-label="Name"><Image src={company?.avatar?.url || "../../public/file.svg"} height={40} width={40} alt={company.name}></Image> {company.name}</td>
-              <td data-label="creation">{company.createdAt ? new Date(company.createdAt).toLocaleString() : "N/A"}</td>
-              <td data-label="actions" className={styles.actions}>
-                <button className={styles.edit} onClick={() => openEdit(company)}>
-                  Edit <i className="fas fa-pen"></i>
-                </button>
-                <button className={styles.delete} onClick={() => openDelete(company)}>
-                  Delete <i className="fas fa-trash"></i>
-                </button>
-                <Link
-                  href={`/admin/companies/${encodeURIComponent(company._id)}`}
-                  className={styles.link}
-                >
-                 <p>Products</p> <i className="fas fa-shopping-bag"></i>
-                </Link>
-              </td>
-            </tr>
-          ))}</>)
-          :<tr><td colSpan="3">No companies available</td></tr>}
-        </tbody>
-      </table>
+      {/* Companies Grid */}
+      <div className={styles.categoriesSection}>
+        <h2 className={styles.sectionTitle}>All Companies</h2>
+        {companies?.length > 0 ? (
+          <div className={styles.categoriesGrid}>
+            {companies.map((company) => (
+              <div key={company._id} className={styles.categoryCard}>
+                <div className={styles.cardHeader}>
+                  <div className={styles.categoryInfo}>
+                    <div className={styles.categoryAvatar}>
+                      <Image 
+                        src={company?.avatar?.url || "/public/file.svg"} 
+                        height={48} 
+                        width={48} 
+                        alt={company.name}
+                        className={styles.avatarImage}
+                      />
+                    </div>
+                    <div className={styles.categoryDetails}>
+                      <h3 className={styles.categoryName}>{company.name}</h3>
+                      <p className={styles.categoryDate}>
+                        Created {company.createdAt ? new Date(company.createdAt).toLocaleDateString() : "N/A"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className={styles.categoryStatus}>
+                    <span className={styles.statusBadge}>Active</span>
+                  </div>
+                </div>
+                <div className={styles.cardActions}>
+                  <button className={styles.actionEdit} onClick={() => openEdit(company)}>
+                    <i className="fas fa-edit"></i>
+                    Edit
+                  </button>
+                  <button className={styles.actionDelete} onClick={() => openDelete(company)}>
+                    <i className="fas fa-trash"></i>
+                    Delete
+                  </button>
+                  <Link
+                    href={`/admin/companies/${encodeURIComponent(company._id)}`}
+                    className={styles.actionView}
+                  >
+                    <i className="fas fa-shopping-bag"></i>
+                    Products
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className={styles.emptyState}>
+            <div className={styles.emptyIcon}>
+              <i className="fas fa-building"></i>
+            </div>
+            <h3>No Companies Found</h3>
+            <p>Start by creating your first company in this category</p>
+            <button className={styles.emptyButton} onClick={addCat}>
+              <i className="fas fa-plus"></i>
+              Create Company
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
