@@ -9,7 +9,7 @@ export default function Footer() {
         {/* Logo / Shop name */}
         <div className={styles.footer_left}>
           <div className={styles.logo}><Image src={"/colored-logo (1).png"} width={60} alt="mk exports" height={60} /> <h2 className={styles.foote_logor}>MK Exports</h2></div>
-          <p>Best place to find products from top companies.</p>
+          <p>Connecting you with leading brands worldwide.</p>
         </div>
 
         {/* Navigation */}
